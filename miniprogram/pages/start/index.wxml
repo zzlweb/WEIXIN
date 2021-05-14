@@ -1,0 +1,6 @@
+<view class="container" hover-class="none" hover-stop-propagation="false">
+    <view class="go" hover-class="none" hover-stop-propagation="false">
+         <button  bindtap="go">跳过{{count}}s</button> 
+    </view>
+    <image class="bg" src="{{bgurl}}" lazy-load="false"></image>
+</view>
