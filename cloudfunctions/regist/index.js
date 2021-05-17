@@ -40,6 +40,7 @@ exports.main = async(event, context) => {
       app.router('getid', async(ctx) => {
             const wxContext = cloud.getWXContext()
             ctx.body = wxContext.OPENID;
+            console.log(ctx.body);
       });
       return app.serve();
 }

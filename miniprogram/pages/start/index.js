@@ -23,7 +23,7 @@ Page({
   go() {
     wx.switchTab({
       url: "/pages/index/index",
-      success: (result) => {},
+      success: () => {},
       fail: () => {
         // Toast.fail('跳转失败')
       },
@@ -72,17 +72,16 @@ Page({
             .where({
               _openid: res.result,
             })
-            .get({
-              success: function (res) {
-                if (res.data.length !== 0) {
-                  app.openid = res.result;
-                  app.userinfo = res.data[0];
-                  console.log(app);
-                }
-
-                console.log(res);
-              },
-            });
+            .get()
+            .then(res=> {
+              console.log(res);
+              if (res.data.length !== 0) {
+                app.openid = res.result;
+                app.userinfo = res.data[0];
+              }
+            }).catch(err => {
+              console.log('查询失败');
+            })
         },
       });
     }
@@ -96,10 +95,8 @@ Page({
   getimg() {
     let that = this;
     db.collection("start")
-      .where({})
       .get({
         success: function (res) {
-          console.log(res);
           that.setData({
             bgurl: res.data[0].url,
           });
