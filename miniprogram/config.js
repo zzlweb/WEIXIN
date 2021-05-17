@@ -14,7 +14,7 @@ var data = {
     },
     //默认启动页背景图，防止请求失败完全空白 
     //可以是网络地址，本地文件路径要填绝对位置
-    bgurl: '/images/startBg.jpg',
+    bgurl: '/images/startImg.jpg',
     //校区
     campus: [{
                 name: 'A区',

@@ -30,5 +30,15 @@
         "selectedIconPath": "/images/tabbar/my_on.png"
       }
     ]
+  },
+  "usingComponets": {
+    "van-steps": "vant/steps/index",
+    "van-transition": "vant/transition/index",
+    "van-stepper": "vant/stepper/index",
+    "van-action-sheet": "vant/action-sheet/index",
+    "van-popup": "vant/popup/index",
+    "canvasdrawer": "/components/canvasdrawer/canvasdrawer",
+    "van-dialog": "vant/dialog/index",
+    "van-toast": "vant/toast/index"
   }
 }
