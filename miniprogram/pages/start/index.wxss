@@ -22,7 +22,7 @@
     z-index: 9;
 }
 
-.go button {
+.go .button {
     font-size: 28rpx;
     letter-spacing: 4rpx;
     border-radius: 30rpx;
