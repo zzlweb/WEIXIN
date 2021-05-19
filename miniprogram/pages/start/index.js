@@ -48,9 +48,9 @@ Page({
           (that.setData({
             count: total,
           }),
-          wx.switchTab({
-            url: "/pages/index/index",
-          }),
+          // wx.switchTab({
+          //   url: "/pages/index/index",
+          // }),
           clearInterval(that.interval));
     }, 1e3);
   },
