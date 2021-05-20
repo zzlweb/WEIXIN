@@ -9,7 +9,8 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: {
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -22,7 +23,7 @@ Page({
   getbanner() {
     let that = this;
     db.collection("banner")
-      .doc("f1abee09-3847-44f6-a6c0-a52e6270ef24-Pt")
+      .where({})
       .get({
         success: function (res) {
           console.log(res);
@@ -32,6 +33,27 @@ Page({
         },
       });
   },
+
+  changeCard() {
+    let that = this;
+    if (that.data.iscard) {
+          that.setData({
+                iscard: false
+          })
+          wx.setStorage({
+                key: 'iscard',
+                data: false,
+          })
+    } else {
+          that.setData({
+                iscard: true
+          })
+          wx.setStorage({
+                key: 'iscard',
+                data: true,
+          })
+    }
+},
 
   /**
    * 生命周期函数--监听页面初次渲染完成

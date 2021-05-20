@@ -1,7 +1,18 @@
-<swiper class="banner" indicator-dots autoplay indicator-active-color="#5063c2" circular>
-      <block wx:for="{{banner}}" wx:key="id">
-            <swiper-item>
-                  <image lazy-load src="{{item.img}}" bindtap="goweb" data-web="{{item}}" class="banner_image" />
-            </swiper-item>
-      </block>
-</swiper>
+<view class="page">
+      <view class="top-box">
+            <view class="search_box" bindtap="search">
+                  <view class="search_content_box flex-row">
+                        <image class="search_ico" src="/images/search.png"></image>
+                        <view class="search_text">搜索想要的书籍，例如：机械设计</view>
+                        <image bindtap="changeCard" class="top_list" src="{{iscard?'/images/list.png':'/images/card.png'}}"></image>
+                  </view>
+            </view>
+            <swiper class="banner" autoplay circular>
+                  <block wx:for="{{banner}}" wx:key="id">
+                        <swiper-item>
+                              <image lazy-load src="{{item.img}}" bindtap="goweb" data-web="{{item}}" class="banner_image" />
+                        </swiper-item>
+                  </block>
+            </swiper>
+      </view>
+</view>

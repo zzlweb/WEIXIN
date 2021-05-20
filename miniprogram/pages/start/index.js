@@ -74,7 +74,7 @@ Page({
             })
             .get()
             .then(res=> {
-              console.log(res);
+              // console.log(res);
               if (res.data.length !== 0) {
                 app.openid = res.result;
                 app.userinfo = res.data[0];

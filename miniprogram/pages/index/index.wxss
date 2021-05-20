@@ -1,1 +1,51 @@
 /* miniprogram/pages/index/index.wxss */
+.top-box{
+  position: relative;
+  height: 450rpx;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+
+.top-box .search_box{
+  position: absolute;
+  top: 360rpx;
+  z-index: 10;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search_content_box{
+  align-items: center;
+  height: 66rpx;
+  line-height: 66rpx;
+  background-color: #fff;
+  font-size: 24rpx;
+  color: #ccc;
+  border: 1px solid  #f8f8f8;
+  border-radius: 10rpx;
+  margin: 0 100rpx 0 40rpx;
+}
+
+.search_ico {
+  width: 32rpx;
+  height: 32rpx;
+  margin: 0 12rpx;
+}
+
+.top_list {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 30rpx;
+}
+
+.banner{
+  width: 100vw;
+  height: 450rpx;
+}
+
+.banner .banner_image{
+  width: 100%;
+  max-height: 480rpx;
+}
