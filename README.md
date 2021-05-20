@@ -11,3 +11,5 @@
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
 ##  采坑集锦
+
+- 云开发从数据库中读取数据，需要将权限先设置为所有用户可读。
