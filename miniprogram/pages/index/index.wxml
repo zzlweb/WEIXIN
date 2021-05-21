@@ -15,4 +15,10 @@
                   </block>
             </swiper>
       </view>
+
+      <view class="top-nav" wx:if="{{scrollTop > 225}}">
+            <nav-bar navbar-data="{{navData}}"></nav-bar>
+      </view>
+
+      <view class="content"></view>
 </view>

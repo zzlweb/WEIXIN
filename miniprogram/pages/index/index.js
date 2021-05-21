@@ -10,6 +10,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    scrollTop: 0,
+    // 标题
+    navData: {
+      title: "云读书"
+    }
   },
 
   /**
@@ -19,7 +24,9 @@ Page({
     this.getbanner()
   },
 
-  //获取轮播
+  /**
+   * 获取轮播图
+   */
   getbanner() {
     let that = this;
     db.collection("banner")
@@ -34,59 +41,73 @@ Page({
       });
   },
 
+  /**
+   * 转换布局格式
+   */
   changeCard() {
     let that = this;
     if (that.data.iscard) {
-          that.setData({
-                iscard: false
-          })
-          wx.setStorage({
-                key: 'iscard',
-                data: false,
-          })
+      that.setData({
+        iscard: false
+      })
+      wx.setStorage({
+        key: 'iscard',
+        data: false,
+      })
     } else {
-          that.setData({
-                iscard: true
-          })
-          wx.setStorage({
-                key: 'iscard',
-                data: true,
-          })
+      that.setData({
+        iscard: true
+      })
+      wx.setStorage({
+        key: 'iscard',
+        data: true,
+      })
     }
-},
+  },
+
+  /**
+   * 检测页面滚动
+   */
+  onPageScroll: function (e) {
+    this.setData({
+      scrollTop: parseInt((e.scrollTop) * wx.getSystemInfoSync().pixelRatio)
+    })
+
+    console.log(e.scrollTop);
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () { },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function () { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {},
+  onShareAppMessage: function () { },
 });

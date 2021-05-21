@@ -4,8 +4,8 @@
     position: fixed;
     width: 100%;
     top: 0;
-    background: #fff;
-    color: #000;
+    background: #5360c2;
+    color: #fff;
     z-index: 9999999;
   }
   /* 标题要居中 */
@@ -21,9 +21,8 @@
     right: 0;
     bottom: 0;
     margin: auto;
-    font-size: 36rpx;
-    color: #2c2b2b;
-    font-weight: 600;
+    font-size: 26rpx;
+    color: #ffffff ;
   }
   
   .nav-capsule {
@@ -38,7 +37,7 @@
   .navbar-v-line {
     width: 1px;
     height: 32rpx;
-    background-color: #e5e5e5;
+    background-color: #5063c2;
   }
   
   .back-pre, .back-home {
