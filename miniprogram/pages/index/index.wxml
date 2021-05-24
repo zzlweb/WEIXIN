@@ -1,24 +1,33 @@
 <view class="page">
       <view class="top-box">
-            <view class="search_box" bindtap="search">
-                  <view class="search_content_box flex-row">
+            <view class="search_box flex-row">
+                  <view class="search_content_box flex-row fill-flex" bindtap="search">
                         <image class="search_ico" src="/images/search.png"></image>
                         <view class="search_text">搜索想要的书籍，例如：机械设计</view>
-                        <image bindtap="changeCard" class="top_list" src="{{iscard?'/images/list.png':'/images/card.png'}}"></image>
                   </view>
+                  <image bindtap="changeCard" class="top_list" src="{{iscard?'/images/list.png':'/images/card.png'}}"></image>
             </view>
             <swiper class="banner" autoplay circular>
                   <block wx:for="{{banner}}" wx:key="id">
                         <swiper-item>
-                              <image lazy-load src="{{item.img}}" bindtap="goweb" data-web="{{item}}" class="banner_image" />
+                              <image lazy-load src="{{item.img}}" data-web="{{item}}" class="banner_image" />
                         </swiper-item>
                   </block>
             </swiper>
       </view>
-
-      <view class=" top_nav {{scrollTop > 200 ? '':'hidden' }}">
-            <nav-bar navbar-data="{{title}}"  navigation-background-color="{{navigationBackgroundColor}}"></nav-bar>
+      <view class="top_nav {{scrollTop > 200 ? '':'hidden' }}">
+            <nav-bar navbar-data="{{title}}" navigation-background-color="{{navigationBackgroundColor}}"></nav-bar>
       </view>
-
-      <view class="content"></view>
+      <!-- 分类导航部分 -->
+      <view class="{{ scrollTop > 268? 'unfixed' :'' }}"></view>
+      <view class="kind_content flex-row {{ scrollTop > 268 ? 'fixed' :''}}">
+            <view class="nav-item {{-2==collegeCur?'tab_on':''}}" bindtap="selectAll">
+                  <view class="nav-text">全部</view>
+            </view>
+            <scroll-view scroll-x class="nav" scroll-with-animation scroll-left="{{scrollLeft}}rpx">
+            <view class="nav-item" wx:for="{{college}}" wx:key="id"  bindtap="collegeSelect"  data-id="{{index}}">
+                  <view class="nav-text {{index==collegeCur+1?'tab_on':''}}">{{item.name}}</view>
+            </view>
+      </scroll-view>
+      </view>
 </view>

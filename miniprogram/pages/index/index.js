@@ -12,7 +12,10 @@ Page({
   data: {
     scrollTop: 0,
     // 标题
-    title: "云读书"
+    title: "云读书",
+    // 获取分类导航的数据
+    college: JSON.parse(config.data).college,
+    collegeCur: -2,
   },
 
   /**
@@ -28,7 +31,6 @@ Page({
   getbanner() {
     let that = this;
     db.collection("banner")
-      .where({})
       .get({
         success: function (res) {
           that.setData({
@@ -78,6 +80,38 @@ Page({
     })
   },
 
+  /**
+   * 跳转搜索页面
+   */
+  search() {
+    wx.navigateTo({
+      url: '/pages/search/index',
+    })
+  },
+
+  /**
+   * 类型选择
+   */
+  collegeSelect(e) {
+    this.setData({
+      collegeCur: e.currentTarget.dataset.id - 1,
+      scrollLeft: (e.currentTarget.dataset.id - 3) * 100,
+      showList: false,
+    })
+    // this.getList();
+  },
+
+  /**
+   * 选择全部
+   */
+  selectAll() {
+    this.setData({
+      collegeCur: -2,
+      scrollLeft: -200,
+      showList: false,
+    })
+    // this.getList();
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

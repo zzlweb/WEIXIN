@@ -3,6 +3,7 @@
   position: relative;
   height: 450rpx;
   overflow: hidden;
+  margin-bottom: 20rpx;
 }
 
 .top-box .search_box{
@@ -20,9 +21,9 @@
   line-height: 66rpx;
   background-color: #fff;
   font-size: 24rpx;
-  color: #ccc;
+  color: #707070;
   border: 1px solid  #f8f8f8;
-  border-radius: 10rpx;
+  border-radius: 50rpx;
   margin: 0 100rpx 0 40rpx;
 }
 
@@ -46,12 +47,72 @@
 
 .banner .banner_image{
   width: 100%;
+  height: 450rpx;
 }
 
 .top_nav.hidden{
   visibility: hidden;
 }
 
-.content{
-  height: 2000rpx;
+.kind_content{
+  width: 100%;
+  height: 99rpx;
+  display: flex;
+  border-bottom: 1rpx solid #eee;
+  background: #fff;
+  align-items: center;
+  position: relative;
+}
+
+.tab_on {
+  color: #5063c2;
+  font-size: 32rpx !important;
+  font-weight: 600;
+  position: relative;
+}
+
+.tab_on::after{
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 2rpx;
+  background-color: #5063c2;
+  bottom: 0;
+}
+
+.nav-item {
+  width: 100rpx;
+  height: 100%;
+  display: inline-block;
+  font-size: 32rpx;
+}
+
+.nav {
+  width: calc(100% - 180rpx);
+  height: 100%;
+  white-space: nowrap;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.nav-text {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 4rpx;
+  box-sizing: border-box;
+}
+
+.unfixed{
+  height: 100rpx;
+  width: 100%;
+  background-color: #fff;
+}
+
+.fixed {
+  position: fixed;
+  left: 0rpx;
+  top: 0rpx;
 }
