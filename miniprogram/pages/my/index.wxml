@@ -1,2 +1,4 @@
 <!--miniprogram/pages/my/index.wxml-->
-<text>个人中心</text>
+<view class="personal">
+  <nav-bar navbar-data="个人中心"  navigation-background-color="#5063c2" back home ></nav-bar>
+</view>

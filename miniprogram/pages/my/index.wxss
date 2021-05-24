@@ -1,1 +1,4 @@
 /* miniprogram/pages/my/index.wxss */
+.personal{
+  min-height: 100vh;
+}

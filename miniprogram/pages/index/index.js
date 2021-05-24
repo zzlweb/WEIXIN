@@ -12,9 +12,7 @@ Page({
   data: {
     scrollTop: 0,
     // 标题
-    navData: {
-      title: "云读书"
-    }
+    title: "云读书"
   },
 
   /**
@@ -33,7 +31,6 @@ Page({
       .where({})
       .get({
         success: function (res) {
-          console.log(res);
           that.setData({
             banner: res.data[0].list,
           });
@@ -72,8 +69,13 @@ Page({
     this.setData({
       scrollTop: parseInt((e.scrollTop) * wx.getSystemInfoSync().pixelRatio)
     })
-
-    console.log(e.scrollTop);
+    // 导航栏透明度
+    let Alpha = e.scrollTop * 1 / 100;
+    // 导航栏背景颜色    
+    let navigationBackgroundColor = 'rgba(83,96,194,' + Alpha + ')';
+    this.setData({
+      navigationBackgroundColor: navigationBackgroundColor,
+    })
   },
 
   /**

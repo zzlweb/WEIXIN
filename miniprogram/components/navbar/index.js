@@ -1,42 +1,52 @@
 const app = getApp()
 Component({
   properties: {
-    navbarData: {   //navbarData   由父页面传递的数据，变量名字自命名
-      type: Object,
-      value: {},
-      observer: function (newVal, oldVal) {}
+    navbarData:{
+      type:String,
+      value: '云读书'
+    },
+    back:{
+      type: Boolean, 
+      value: false
+    },
+    home:{
+      type:Boolean, 
+      value:false
+    },
+    navigationBackgroundColor:{
+      type: String,
+      value: 'rgba(83,96,194,0)'
     }
   },
   data: {
-    height: '',
-    //默认值  默认显示左上角
-    navbarData: {
-      showCapsule: 1
-    }
+    // 状态栏高度
+    statusBarHeight: wx.getStorageSync('statusBarHeight') + 'px',
+    // 导航栏高度
+    navigationBarHeight: wx.getStorageSync('navigationBarHeight') + 'px',
+    // 胶囊按钮高度
+    menuButtonHeight: wx.getStorageSync('menuButtonHeight') + 'px',
+    // 导航栏和状态栏高度
+    navigationBarAndStatusBarHeight:
+      wx.getStorageSync('statusBarHeight') +
+      wx.getStorageSync('navigationBarHeight') +
+      'px'
   },
   attached: function () {
-    // 获取是否是通过分享进入的小程序
-    this.setData({
-      share: app.globalData.share
-    })
-    // 定义导航栏的高度   方便对齐
-    this.setData({
-      height: app.globalData.height
-    })
   },
+
   methods: {
-  // 返回上一页面
+    // 返回上一页面
     _navback() {
       try {
         wx.navigateBack()
       } catch (error) {
       }
     },
-  //返回到首页
+    //返回到首页
     _backhome() {
       wx.switchTab({
         url: '/pages/index/index',
       })
     }
   }
-}) 
+})

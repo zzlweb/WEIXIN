@@ -7,7 +7,7 @@
 
 .top-box .search_box{
   position: absolute;
-  top: 360rpx;
+  top: 340rpx;
   z-index: 10;
   width: 100%;
   justify-content: space-between;
@@ -46,6 +46,10 @@
 
 .banner .banner_image{
   width: 100%;
+}
+
+.top_nav.hidden{
+  visibility: hidden;
 }
 
 .content{
