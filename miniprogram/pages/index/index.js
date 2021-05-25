@@ -12,9 +12,14 @@ Page({
   data: {
     scrollTop: 0,
     // 标题
-    title: "云读书",
+    title: "云图书",
     // 获取分类导航的数据
     college: JSON.parse(config.data).college,
+    // 导航栏和状态栏高度
+    navigationBarAndStatusBarHeight:
+      wx.getStorageSync('statusBarHeight') +
+      wx.getStorageSync('navigationBarHeight') +
+      'px',
     collegeCur: -2,
   },
 
@@ -71,6 +76,8 @@ Page({
     this.setData({
       scrollTop: parseInt((e.scrollTop) * wx.getSystemInfoSync().pixelRatio)
     })
+
+    console.log(e.scrollTop);
     // 导航栏透明度
     let Alpha = e.scrollTop * 1 / 100;
     // 导航栏背景颜色    
@@ -112,6 +119,16 @@ Page({
     })
     // this.getList();
   },
+
+  /**
+   * 展示全部分类
+   */
+  showCateList() {
+      this.setData({
+        showList: !this.data.showList
+      })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

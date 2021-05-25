@@ -2,7 +2,7 @@ var data = {
     //云开发开发环境id
     env: 'cloud1-1gzhbqmy42436072', 
     //分享配置
-    share_title: '云读书',
+    share_title: '云图书',
     share_img: '/images/poster.png', //可以是网络地址，本地文件路径要填绝对位置
     share_poster:'https://mmbiz.qpic.cn/mmbiz_jpg/nJPznPUZbhpA064Cl78xxvzBYTDa6O1Kl7RY1K6TerBaXcUf5AoN6x7s8q7xHgeu0Cl5qarPzE6ibbQZasWRErg/640',//必须为网络地址
     //客服联系方式

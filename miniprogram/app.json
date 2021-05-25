@@ -9,7 +9,7 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#5063c2",
-    "navigationBarTitleText": "云读书",
+    "navigationBarTitleText": "云图书",
     "navigationBarTextStyle": "white"
   },
   "sitemapLocation": "sitemap.json",

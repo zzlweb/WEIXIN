@@ -33,8 +33,6 @@ App({
     if (top && top !== 0 && height && height !== 0) {
         const navigationBarHeight = (top - statusBarHeight) * 2 + height
         // 导航栏高度
-
-        console.log(navigationBarHeight);
         wx.setStorageSync('navigationBarHeight', navigationBarHeight)
     } else {
         wx.setStorageSync(

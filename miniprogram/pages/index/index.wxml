@@ -1,33 +1,84 @@
-<view class="page">
-      <view class="top-box">
-            <view class="search_box flex-row">
-                  <view class="search_content_box flex-row fill-flex" bindtap="search">
-                        <image class="search_ico" src="/images/search.png"></image>
-                        <view class="search_text">搜索想要的书籍，例如：机械设计</view>
-                  </view>
-                  <image bindtap="changeCard" class="top_list" src="{{iscard?'/images/list.png':'/images/card.png'}}"></image>
+<wxs src="../../common.wxs" module="morejs" />
+<view class="top-box">
+      <view class="search_box flex-row">
+            <view class="search_content_box flex-row fill-flex">
+                  <image class="search_ico" src="/images/search.png"></image>
+                  <view bindtap="search" class="search_text">搜索想要的书籍，例如：机械设计</view>
             </view>
-            <swiper class="banner" autoplay circular>
-                  <block wx:for="{{banner}}" wx:key="id">
-                        <swiper-item>
-                              <image lazy-load src="{{item.img}}" data-web="{{item}}" class="banner_image" />
-                        </swiper-item>
-                  </block>
-            </swiper>
+            <image bindtap="changeCard" class="top_list" src="{{iscard?'/images/list.png':'/images/card.png'}}"></image>
       </view>
-      <view class="top_nav {{scrollTop > 200 ? '':'hidden' }}">
-            <nav-bar navbar-data="{{title}}" navigation-background-color="{{navigationBackgroundColor}}"></nav-bar>
+      <swiper class="banner" autoplay circular>
+            <block wx:for="{{banner}}" wx:key="id">
+                  <swiper-item>
+                        <image lazy-load src="{{item.img}}" data-web="{{item}}" class="banner_image" />
+                  </swiper-item>
+            </block>
+      </swiper>
+</view>
+<view class="top_nav {{scrollTop > 200 ? '':'hidden' }}">
+      <nav-bar navbar-data="{{title}}" navigation-background-color="{{navigationBackgroundColor}}"></nav-bar>
+</view>
+<!-- 分类导航部分 -->
+<view class="{{ scrollTop > 470? 'unfixed' : '' }}"></view>
+<!-- 分类导航菜单展示 -->
+<view class="kind_content flex-row {{ scrollTop > 470? 'fixed' :''}}" style="top : {{ scrollTop > 470 ?navigationBarAndStatusBarHeight: 0 }}">
+      <view class="nav-item {{-2==collegeCur?'tab_on':''}}" bindtap="selectAll">
+            <view class="nav-text">全部</view>
       </view>
-      <!-- 分类导航部分 -->
-      <view class="{{ scrollTop > 268? 'unfixed' :'' }}"></view>
-      <view class="kind_content flex-row {{ scrollTop > 268 ? 'fixed' :''}}">
-            <view class="nav-item {{-2==collegeCur?'tab_on':''}}" bindtap="selectAll">
-                  <view class="nav-text">全部</view>
-            </view>
-            <scroll-view scroll-x class="nav" scroll-with-animation scroll-left="{{scrollLeft}}rpx">
-            <view class="nav-item" wx:for="{{college}}" wx:key="id"  bindtap="collegeSelect"  data-id="{{index}}">
+      <scroll-view scroll-x class="nav" scroll-with-animation scroll-left="{{scrollLeft}}rpx">
+            <view class="nav-item" wx:for="{{college}}" wx:key="id" bindtap="collegeSelect" data-id="{{index}}">
                   <view class="nav-text {{index==collegeCur+1?'tab_on':''}}">{{item.name}}</view>
             </view>
       </scroll-view>
+      <view class="kin_img fill-flex flex-row" bindtap="showCateList">
+            <image lazy-load src="{{showList? '/images/zhankai.svg' :'/images/zhankai1.svg' }}"></image>
+      </view>
+      <!-- 分类展开展示 -->
+      <view class="kind_list_box" wx:if="{{showList}}">
+            <view class="card_box flex-row">
+                  <view bindtap="collegeSelect" class="card_item" wx:for="{{college}}" wx:key="id" data-id="{{index}}">
+                        <view class="card_item_text {{index==collegeCur+1?'card_item_on':''}}">
+                              {{item.name}}
+                        </view>
+                  </view>
+            </view>
       </view>
 </view>
+<!-- 图书列表展示 -->
+<view hidden="{{!iscard}}">
+      <!-- <block wx:if="{{list.length > 0}}"> -->
+      <block wx:for="{{[1,2,3,4,5,6,7]}}" wx:key="index">
+      <view class="list_box flex-row ">
+            <image lazy-load="{{true}}" mode="aspectFit" class="list_box_img" src="/images/avator.png"></image>
+            <view class="list_box_content flex-col fill-flex">
+                  <view>
+                        <view class="list_box_title">人人都是产品经理2.0</view>
+                        <view class="list_box_author">小明著</view>
+                  </view>
+                  <view class="list_box_bottom flex-row ">
+                        <view class="list_box_money">￥100.00元</view>
+                        <view class="list_time">一天前发布</view>
+                  </view>
+            </view>
+      </view>
+      </block>
+      <!-- </block> -->
+</view>
+<!-- 图书宫格展示 -->
+<view hidden="{{iscard}}">
+      <view class="list_grid flex-row">
+            <view class="list_grid_box flex-col" wx:for="{{[1,2,3,4,5,6,7]}}" wx:key="index">
+                  <image lazy-load="{{true}}" mode="aspectFit" class="list_grid_img" src="/images/avator.png"></image>
+                  <view>
+                        <view class="list_box_title">人人都是产品经理2.0</view>
+                        <view class="list_box_author">小明著</view>
+                  </view>
+                  <view class="list_box_bottom flex-row ">
+                        <view class="list_box_money">￥100.00元</view>
+                        <view class="list_time">一天前发布</view>
+                  </view>
+            </view>
+      </view>
+</view>
+<!-- 首次进入提示收藏小程序 -->
+<!-- <tips /> -->

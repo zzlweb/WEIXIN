@@ -3,7 +3,7 @@ Component({
   properties: {
     navbarData:{
       type:String,
-      value: '云读书'
+      value: '云图书'
     },
     back:{
       type: Boolean, 

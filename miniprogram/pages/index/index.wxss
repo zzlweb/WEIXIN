@@ -66,7 +66,7 @@
 
 .tab_on {
   color: #5063c2;
-  font-size: 32rpx !important;
+  font-size: 28rpx;
   font-weight: 600;
   position: relative;
 }
@@ -84,7 +84,7 @@
   width: 100rpx;
   height: 100%;
   display: inline-block;
-  font-size: 32rpx;
+  font-size: 28rpx;
 }
 
 .nav {
@@ -105,14 +105,123 @@
   box-sizing: border-box;
 }
 
+.kin_img{
+  justify-content: center;
+  align-items: center;
+}
+
+.kin_img image{
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.kind_list_box{
+  position: absolute;
+  top: 100rpx;
+  width: 100%;
+  left: 0;
+  box-shadow: 0 0 2px 0 rgba(0,0,0,.12);
+}
+
+.kind_list_box .card_box{
+  padding: 20rpx 0 15rpx;
+  width: 100%;
+  background-color: #fff;
+}
+
+.card_item_text{
+  width: 100rpx;
+  height: 60rpx;
+  margin-bottom: 20rpx;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border: 2rpx solid #f8f8f8;
+  margin: 0 11rpx 10rpx;
+  border-radius: 10rpx;
+}
+
+.card_item_on{
+  background-color: #5063c2;
+  color: #fff;
+}
+
+/* 列表展示部分 */
+.list_box{
+  height: 200rpx;
+  background-color: #fff;
+  align-items: center;
+}
+
+.list_box .list_box_img{
+  margin: 0 20rpx;
+  height: 180rpx;
+  width: 200rpx;
+}
+
+.list_box:last-child .list_box_content{
+  box-shadow: none;
+}
+
+.list_box_content {
+  justify-content: center;
+  height: 100%;
+  box-shadow: 0 2rpx 0 0 rgb(236, 236, 236);
+}
+
+
+.list_box_content .list_box_title{
+  font-size: 32rpx;
+  color: #000;
+  margin-bottom: 10rpx;
+}
+
+.list_box_author{
+  margin-bottom: 40rpx;
+  font-size: 24rpx;
+  color: rgb(119, 118, 118);
+  justify-content: space-between;
+}
+
+.list_box_bottom{
+  justify-content: space-between;
+  align-items: center;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.list_box_money{
+  color: red;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.list_box_bottom .list_time{
+  font-size: 24rpx;
+  color:rgb(119, 118, 118);
+  margin-right: 40rpx;
+}
+
+/* 宫格展示部分 */
+.list_grid_box{
+  width: 47%;
+  padding-left: 20rpx;
+  height: 400rpx;
+  background-color: #fff;
+}
+
+.list_grid_box image{
+  height: 180rpx;
+  width: 200rpx;
+  margin: 20rpx auto;
+}
+
 .unfixed{
   height: 100rpx;
   width: 100%;
-  background-color: #fff;
 }
 
 .fixed {
   position: fixed;
   left: 0rpx;
-  top: 0rpx;
 }
