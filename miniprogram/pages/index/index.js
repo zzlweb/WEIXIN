@@ -21,6 +21,8 @@ Page({
       wx.getStorageSync('navigationBarHeight') +
       'px',
     collegeCur: -2,
+    nomore: false,
+    list: [1],
   },
 
   /**
@@ -43,6 +45,25 @@ Page({
           });
         },
       });
+  },
+
+  /**
+   * 获取布局设置
+   */
+  getListStyle() {
+    wx.getStorage({
+      key: 'iscard',
+      success(res) {
+        this.setData({
+          iscard: res.data
+        })
+      },
+      fail() {
+        this.setData({
+          iscard: true
+        })
+      }
+    })
   },
 
   /**
@@ -124,9 +145,18 @@ Page({
    * 展示全部分类
    */
   showCateList() {
-      this.setData({
-        showList: !this.data.showList
-      })
+    this.setData({
+      showList: !this.data.showList
+    })
+  },
+
+  /**
+   * 返回顶部
+   */
+  gotop() {
+    wx.pageScrollTo({
+      scrollTop: 0
+    })
   },
 
   /**

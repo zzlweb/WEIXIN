@@ -202,18 +202,61 @@
   margin-right: 40rpx;
 }
 
-/* 宫格展示部分 */
-.list_grid_box{
-  width: 47%;
-  padding-left: 20rpx;
-  height: 400rpx;
+.list_grid{
   background-color: #fff;
 }
 
-.list_grid_box image{
+/* 宫格展示部分 */
+.list_grid_box{
+  height: 400rpx;
+  padding: 0 40rpx;
+  width: 50%;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.list_grid_box .list_grid_img{
   height: 180rpx;
   width: 200rpx;
   margin: 20rpx auto;
+}
+
+.list_grid_box .list_box_title{
+  font-size: 32rpx;
+  color: #000;
+}
+
+.list_box_author{
+  font-size: 24rpx;
+  color: rgb(119, 118, 118);
+}
+
+.list_grid_box .list_box_bottom image{
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.nocontent {
+  width: 100%;
+  height: calc(100% - 400rpx);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.nocontent image {
+  padding-left: 80rpx;
+  width: 340rpx;
+  height: 272rpx;
+}
+
+.blank_text {
+  padding-top: 40rpx;
+  font-size: 32rpx;
+  letter-spacing: 2rpx;
+  color: #c6c6c8;
 }
 
 .unfixed{

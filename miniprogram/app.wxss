@@ -18,6 +18,12 @@ page {
   flex: 1;
 }
 
+.text-cut {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .loadmore {
   width: 100%;
   display: flex;
@@ -44,8 +50,8 @@ page {
 }
 
 .totop image {
-  width: 100rpx;
-  height: 100rpx;
+  width: 80rpx;
+  height: 80rpx;
   z-index: 9;
 }
 

@@ -33,13 +33,13 @@
     ]
   },
   "usingComponets": {
-    "van-steps": "vant/steps/index",
-    "van-transition": "vant/transition/index",
-    "van-stepper": "vant/stepper/index",
-    "van-action-sheet": "vant/action-sheet/index",
-    "van-popup": "vant/popup/index",
+    "van-steps": "vant-weapp/steps/index",
+    "van-transition": "vant-weapp/transition/index",
+    "van-stepper": "vant-weapp/stepper/index",
+    "van-action-sheet": "vant-weapp/action-sheet/index",
+    "van-popup": "vant-weapp/popup/index",
     "canvasdrawer": "/components/canvasdrawer/canvasdrawer",
-    "van-dialog": "vant/dialog/index",
-    "van-toast": "vant/toast/index"
+    "van-dialog": "vant-weapp/dialog/index",
+    "van-toast": "vant-weapp/toast/index"
   }
 }

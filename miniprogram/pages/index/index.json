@@ -1,4 +1,7 @@
 {
-  "usingComponents": {"nav-bar": "/components/navbar"},
+  "usingComponents": {
+    "nav-bar": "/components/navbar", 
+    "van-transition": "vant-weapp/transition/index"
+  },
   "navigationStyle": "custom"
 }
