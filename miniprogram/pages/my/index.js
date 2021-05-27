@@ -1,10 +1,42 @@
 // miniprogram/pages/my/index.js
+const app = getApp()
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    // 导航栏和状态栏高度
+    navigationBarAndStatusBarHeight:
+      wx.getStorageSync('statusBarHeight') +
+      wx.getStorageSync('navigationBarHeight') +
+      'px'
   },
+
+  /**
+   * 
+   * @param {*} options 
+   */
+   go(e) {
+    if (e.currentTarget.dataset.status == '1') {
+          if (!app.openid) {
+                wx.showModal({
+                      title: '温馨提示',
+                      content: '该功能需要注册方可使用，是否马上去注册',
+                      success(res) {
+                            if (res.confirm) {
+                                  wx.navigateTo({
+                                        url: '/pages/login/login',
+                                  })
+                            }
+                      }
+                })
+                return false
+          }
+    }
+    wx.navigateTo({
+          url: e.currentTarget.dataset.go
+    })
+},
 
   /**
    * 生命周期函数--监听页面加载
@@ -24,7 +56,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      userinfo: app.userinfo
+    })
   },
 
   /**

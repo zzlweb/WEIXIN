@@ -1,4 +1,26 @@
 /* miniprogram/pages/my/index.wxss */
-.personal{
-  min-height: 100vh;
+.top_user_box{
+    box-shadow: 0 0 1rpx 0 rgba(0,0,0,.12);
+    height: 180rpx;
+    padding: 0 40rpx;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: #fff;
 }
+
+.top_user_box_left .top_user_name{
+    font-size: 28rpx;
+    margin-bottom: 40rpx;
+}
+
+.top_user_box_left .top_user_name_bottom{
+    font-size: 28rpx;
+    color: #666;
+}
+
+.top_user_box_right .avator image{
+    width: 120rpx;
+    height: 120rpx;
+}
+
