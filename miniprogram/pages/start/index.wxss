@@ -18,7 +18,7 @@
 .go{
     position: absolute;
     right: 30rpx;
-    top: 150rpx;
+    top: 160rpx;
     z-index: 9;
 }
 

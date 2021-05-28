@@ -3,14 +3,14 @@
   <nav-bar navbar-data="个人中心" navigation-background-color="#5063c2"></nav-bar>
   <view class="top_user_box flex-row">
     <view class="top_user_box_left flex-col">
-      <van-button class="top_user_name" size="normal" color="#5063c2" hairline wx:if="{{!userInfo}}" open-type="getUserInfo" bindtap="bindGetUserInfo">
+      <button class="top_user_name_button"  wx:if="{{!userInfo}}" open-type="getUserInfo" bindtap="bindGetUserInfo">
         授权登录
-      </van-button>
+      </button>
       <view class="top_user_name" wx:if="{{userInfo}}">
         {{userInfo.nickName}}
       </view>
       <view class="top_user_name_bottom" hover-stop-propagation="false">
-        一秒登录，体验所有功能
+        一键登录，体验所有功能
       </view>
     </view>
     <view class="top_user_box_right" hover-class="none" hover-stop-propagation="false">
@@ -18,6 +18,21 @@
         <image wx:if="{{ userInfo }}" bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
         <image  wx:if="{{!userInfo}}" src="/images/avator.png"></image>
       </view>
+    </view>
+  </view>
+  <!-- 我的发布 我的购买 帮助中心 -->
+  <view class="flex-row user_center">
+    <view class="user_center_item flex-col">
+      <image src="/images/fabu.svg"></image>
+      <view>我的发布</view>
+    </view>
+    <view class="user_center_item flex-col">
+      <image src="/images/goumai.svg"></image>
+      <view>我的购买</view>
+    </view>
+    <view class="user_center_item flex-col">
+      <image src="/images/helpcenter.svg"></image>
+      <view>帮助中心</view>
     </view>
   </view>
 </view>

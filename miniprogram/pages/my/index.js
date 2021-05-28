@@ -10,30 +10,7 @@ Page({
                   wx.getStorageSync('statusBarHeight') +
                   wx.getStorageSync('navigationBarHeight') +
                   'px',
-            userInfo:  {},
-      },
-
-      /**
-       * 
-       * 跳转逻辑
-       */
-      go(e) {
-            if (e.currentTarget.dataset.status == '1') {
-                  if (!app.openid) {
-                        wx.showModal({
-                              title: '温馨提示',
-                              content: '该功能需要注册方可使用，是否马上去注册',
-                              success(res) {
-                                    if (res.confirm) {
-                                          wx.navigateTo({
-                                                url: '/pages/login/login',
-                                          })
-                                    }
-                              }
-                        })
-                        return false
-                  }
-            }
+                  userInfo: app.userinfo || null,
       },
 
       /**
@@ -99,12 +76,11 @@ Page({
        * 生命周期函数--监听页面显示
        */
       onShow: function () {
-            if(app.userinfo){
+            if (app.userinfo) {
                   this.setData({
-                        userInfo: app.userinfo, 
+                        userInfo: app.userinfo,
                   })
             }
-            
       },
 
       /**
