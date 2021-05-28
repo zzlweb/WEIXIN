@@ -11,7 +11,9 @@
 
 .top_user_box_left .top_user_name{
     font-size: 28rpx;
-    margin-bottom: 40rpx;
+    margin-bottom: 20rpx;
+    height: 88rpx;
+    line-height: 88rpx;
 }
 
 .top_user_box_left .top_user_name_bottom{
@@ -22,5 +24,9 @@
 .top_user_box_right .avator image{
     width: 120rpx;
     height: 120rpx;
+}
+
+.top_user_box_right .avator .userinfo-avatar{
+    border-radius: 50%;
 }
 

@@ -74,10 +74,9 @@ Page({
             })
             .get()
             .then(res=> {
-              // console.log(res);
               if (res.data.length !== 0) {
-                app.openid = res.result;
-                app.userinfo = res.data[0];
+                app.userinfo = res.data[0].info;
+                app.openid = res.data[0]._openid;
               }
             }).catch(err => {
               console.log('查询失败');

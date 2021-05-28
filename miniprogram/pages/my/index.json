@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "nav-bar": "/components/navbar",
-    "van-toast": "vant-weapp/toast/index"
+    "van-toast": "vant-weapp/toast/index",
+    "van-button": "vant-weapp/button/index"
   },
   "navigationStyle": "custom"
 }

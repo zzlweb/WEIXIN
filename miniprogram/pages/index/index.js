@@ -98,7 +98,6 @@ Page({
       scrollTop: parseInt((e.scrollTop) * wx.getSystemInfoSync().pixelRatio)
     })
 
-    console.log(e.scrollTop);
     // 导航栏透明度
     let Alpha = e.scrollTop * 1 / 100;
     // 导航栏背景颜色    

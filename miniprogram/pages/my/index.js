@@ -1,5 +1,7 @@
 // miniprogram/pages/my/index.js
 const app = getApp()
+// 获取数据库实例
+const db = wx.cloud.database();
 Page({
       //页面的初始数据
       data: {
@@ -8,8 +10,7 @@ Page({
                   wx.getStorageSync('statusBarHeight') +
                   wx.getStorageSync('navigationBarHeight') +
                   'px',
-            userInfo: {},
-            hasUserInfo: false,
+            userInfo:  {},
       },
 
       /**
@@ -33,19 +34,51 @@ Page({
                         return false
                   }
             }
-            // wx.navigateTo({
-            //       url: e.currentTarget.dataset.go
-            // })
       },
 
+      /**
+       * 获取用户非敏感信息
+       */
       bindGetUserInfo() {
             wx.getUserProfile({
-                  desc: '用于完善用户资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+                  desc: '用于显示头像', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
                   success: (res) => {
                         this.setData({
                               userInfo: res.userInfo,
-                              hasUserInfo: true,
                         })
+
+                        // 存入数据库
+                        this.setInfo()
+                  },
+                  fail: () => {
+                        wx.showToast({
+                              title: '请授权后方可使用',
+                              icon: 'none',
+                              duration: 2000
+                        });
+                  }
+            })
+      },
+
+      /**
+       * 将用户非敏感信息存入数据库
+       */
+      setInfo() {
+            db.collection('user').add({
+                  data: {
+                        stamp: new Date().getTime(),
+                        info: this.data.userInfo,
+                  },
+                  success: function (res) {
+                        db.collection('user').doc(res._id).get({
+                              success: function (res) {
+                                    app.userinfo = res.data.info;
+                                    app.openid = res.data._openid;
+                              },
+                        })
+                  },
+                  fail(err) {
+                        console.log(err);
                   }
             })
       },
@@ -66,9 +99,12 @@ Page({
        * 生命周期函数--监听页面显示
        */
       onShow: function () {
-            this.setData({
-                  userinfo: app.userinfo || ''
-            })
+            if(app.userinfo){
+                  this.setData({
+                        userInfo: app.userinfo, 
+                  })
+            }
+            
       },
 
       /**

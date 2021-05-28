@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/start/index",
     "pages/my/index",
     "pages/index/index",
-    "pages/start/index",
-    "pages/search/index",
+    "pages/search/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

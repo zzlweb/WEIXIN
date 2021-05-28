@@ -3,10 +3,10 @@
   <nav-bar navbar-data="个人中心" navigation-background-color="#5063c2"></nav-bar>
   <view class="top_user_box flex-row">
     <view class="top_user_box_left flex-col">
-      <button class="top_user_name" wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindtap="bindGetUserInfo">
+      <van-button class="top_user_name" size="normal" color="#5063c2" hairline wx:if="{{!userInfo}}" open-type="getUserInfo" bindtap="bindGetUserInfo">
         授权登录
-      </button>
-      <view class="top_user_name" wx:if="{{hasUserInfo}}">
+      </van-button>
+      <view class="top_user_name" wx:if="{{userInfo}}">
         {{userInfo.nickName}}
       </view>
       <view class="top_user_name_bottom" hover-stop-propagation="false">
@@ -15,8 +15,8 @@
     </view>
     <view class="top_user_box_right" hover-class="none" hover-stop-propagation="false">
       <view class="avator">
-        <image wx:if="{{ hasUserInfo }}" bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <image wx:if="{{!hasUserInfo}}" src="/images/avator.png"></image>
+        <image wx:if="{{ userInfo }}" bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <image  wx:if="{{!userInfo}}" src="/images/avator.png"></image>
       </view>
     </view>
   </view>
