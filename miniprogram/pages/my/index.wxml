@@ -1,26 +1,23 @@
-<!--miniprogram/pages/my/index.wxml-->
+<!-- miniprogram/pages/my/index.wxml -->
 <view class="personal" style="padding-top: {{ navigationBarAndStatusBarHeight }}">
-  <nav-bar navbar-data="个人中心"  navigation-background-color="#5063c2"></nav-bar>
-
-  <view class="top_user_box flex-row" >
+  <nav-bar navbar-data="个人中心" navigation-background-color="#5063c2"></nav-bar>
+  <view class="top_user_box flex-row">
     <view class="top_user_box_left flex-col">
-      <view class="top_user_name" bindtap="go" data-go="/pages/login/index" wx:if="{{!userinfo}}">点击登录</view>
-      <view class="top_user_name" wx:if="{{userinfo}}">
-        <open-data type="userNickName" ></open-data>
+      <button class="top_user_name" wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindtap="bindGetUserInfo">
+        授权登录
+      </button>
+      <view class="top_user_name" wx:if="{{hasUserInfo}}">
+        {{userInfo.nickName}}
       </view>
-      <view wx:if="{{!userinfo}}"  class="top_user_name_bottom" hover-stop-propagation="false">
+      <view class="top_user_name_bottom" hover-stop-propagation="false">
         一秒登录，体验所有功能
       </view>
-      <view class="top_user_name_bottom" wx:if="{{userinfo}}" hover-class="none" hover-stop-propagation="false">
-        点击修改资料
-      </view>
     </view>
-
     <view class="top_user_box_right" hover-class="none" hover-stop-propagation="false">
       <view class="avator">
-                  <open-data wx:if="{{userinfo}}" type="userAvatarUrl"></open-data>
-                  <image wx:if="{{!userinfo}}" src="/images/avator.png"></image>
-            </view>
+        <image wx:if="{{ hasUserInfo }}" bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <image wx:if="{{!hasUserInfo}}" src="/images/avator.png"></image>
+      </view>
     </view>
   </view>
 </view>
