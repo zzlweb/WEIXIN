@@ -3,20 +3,16 @@
   <nav-bar navbar-data="个人中心" navigation-background-color="#5063c2"></nav-bar>
   <view class="top_user_box flex-row">
     <view class="top_user_box_left flex-col">
-      <button class="top_user_name_button"  wx:if="{{!userInfo}}" open-type="getUserInfo" bindtap="bindGetUserInfo">
+      <button class="top_user_name_button" wx:if="{{!userInfo}}" open-type="getUserInfo" bindtap="bindGetUserInfo">
         授权登录
       </button>
-      <view class="top_user_name" wx:if="{{userInfo}}">
-        {{userInfo.nickName}}
-      </view>
-      <view class="top_user_name_bottom" hover-stop-propagation="false">
-        一键登录，体验所有功能
-      </view>
+      <view class="top_user_name" wx:if="{{userInfo}}">{{userInfo.nickName}}</view>
+      <view class="top_user_name_bottom" hover-stop-propagation="false">一键登录，体验所有功能</view>
     </view>
     <view class="top_user_box_right" hover-class="none" hover-stop-propagation="false">
       <view class="avator">
         <image wx:if="{{ userInfo }}" bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <image  wx:if="{{!userInfo}}" src="/images/avator.png"></image>
+        <image wx:if="{{!userInfo}}" src="/images/avator.png"></image>
       </view>
     </view>
   </view>
@@ -35,4 +31,16 @@
       <view>帮助中心</view>
     </view>
   </view>
+  <!-- 我的钱包 -->
+  <block wx:for="{{dataPersonal}}" wx:key="id">
+    <view class="cell_item flex-row" data-src="{{item.src}}" bindtap="goPage">
+    <view class="cell_left flex-row">
+      <image src="{{item.image}}"></image>
+      <view class="cell_title">{{item.title}}</view>
+    </view>
+    <view class="cell_right">
+      <image class="right_arrow" src="/images/go.png"></image>
+    </view>
+  </view>
+  </block>
 </view>

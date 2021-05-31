@@ -42,6 +42,7 @@
     height: 200rpx;
     background-color: #fff;
     align-items: center;
+    margin-bottom: 10rpx;
 }
 
 .user_center .user_center_item {
@@ -53,4 +54,35 @@
     width: 60rpx;
     height: 60rpx; 
     margin-bottom: 10rpx;
+}
+
+.cell_item {
+    height: 120rpx;
+    line-height: 120rpx;
+    padding: 0 40rpx;
+    font-size: 28rpx;
+    background-color: #fff;
+    border-bottom: 1rxp solid #ccc;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cell_item .cell_left{
+    justify-content: center;
+    align-items: center;
+}
+
+.cell_item .cell_left image{
+    width: 60rpx;
+    height: 60rpx;
+    margin-right: 20rpx;
+}
+
+.cell_item .cell_right .right_arrow {
+    width: 20rpx;
+    height: 30rpx;
+}
+
+.cell_item:last-child{
+    border-bottom: none;
 }

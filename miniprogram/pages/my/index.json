@@ -2,7 +2,9 @@
   "usingComponents": {
     "nav-bar": "/components/navbar",
     "van-toast": "vant-weapp/toast/index",
-    "van-button": "vant-weapp/button/index"
+    "van-button": "vant-weapp/button/index",
+    "van-cell":"vant-weapp/cell/index",
+    "van-group":"vant-weapp/cell-group/index"
   },
   "navigationStyle": "custom"
 }

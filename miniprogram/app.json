@@ -2,6 +2,7 @@
   "pages": [
     "pages/start/index",
     "pages/index/index",
+    "pages/publish/index",
     "pages/my/index",
     "pages/search/index"
   ],
@@ -23,6 +24,12 @@
         "text": "首页",
         "iconPath": "/images/tabbar/home.png",
         "selectedIconPath": "/images/tabbar/home_on.png"
+      },
+      {
+        "pagePath": "pages/publish/index",
+        "text": "发布",
+        "iconPath": "/images/tabbar/fabu.png",
+        "selectedIconPath": "/images/tabbar/fabu1.png"
       },
       {
         "pagePath": "pages/my/index",

@@ -10,7 +10,14 @@ Page({
                   wx.getStorageSync('statusBarHeight') +
                   wx.getStorageSync('navigationBarHeight') +
                   'px',
-                  userInfo: app.userinfo || null,
+            userInfo: app.userinfo || null,
+            // 序列
+            dataPersonal: [
+                  { id: '0', image: '/images/我的钱包.svg' , title:'我的钱包', src:''},
+                  { id: '1', image: '/images/我的客服.svg' , title:'客服反馈', src:''},
+                  { id: '2', image: '/images/分享.svg' , title:'分享应用', src:''},
+                  { id: '3', image: '/images/关于.svg' , title:'关于应用', src:''}
+            ]
       },
 
       /**
@@ -57,6 +64,15 @@ Page({
                   fail(err) {
                         console.log(err);
                   }
+            })
+      },
+
+      /**
+       * 跳转
+       */
+      goPage(e) {
+            wx.navigateTo({
+                  url: e.currentTarget.dataset.src
             })
       },
 

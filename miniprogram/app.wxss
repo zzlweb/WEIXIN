@@ -50,8 +50,8 @@ page {
 }
 
 .totop image {
-  width: 80rpx;
-  height: 80rpx;
+  width: 100rpx;
+  height: 100rpx;
   z-index: 9;
 }
 
