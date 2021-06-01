@@ -6,5 +6,7 @@
     "van-cell":"vant-weapp/cell/index",
     "van-group":"vant-weapp/cell-group/index"
   },
-  "navigationStyle": "custom"
+  "navigationBarTitleText": "个人中心",
+  "navigationBarBackgroundColor": "#5063c2",
+  "navigationBarTextStyle": "white"
 }

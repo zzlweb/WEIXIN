@@ -7,10 +7,10 @@ var data = {
       share_poster: 'https://mmbiz.qpic.cn/mmbiz_jpg/nJPznPUZbhpA064Cl78xxvzBYTDa6O1Kl7RY1K6TerBaXcUf5AoN6x7s8q7xHgeu0Cl5qarPzE6ibbQZasWRErg/640',//必须为网络地址
       //客服联系方式
       kefu: {
-            weixin: '',
+            weixin: 'zkzkzk',
             qq: '2368264874',
             gzh: '', //公众号二维码必须为网络地址
-            phone: '' //如果你不设置电话客服，就留空
+            phone: 'xxxx' //如果你不设置电话客服，就留空
       },
       //默认启动页背景图，防止请求失败完全空白 
       //可以是网络地址，本地文件路径要填绝对位置
