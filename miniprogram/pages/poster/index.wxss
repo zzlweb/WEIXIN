@@ -1,0 +1,17 @@
+.empty {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.empty image {
+  width: 400rpx;
+  height: 400rpx;
+  margin-bottom: 40rpx;
+}
+
+.empty .text{
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #666;
+}

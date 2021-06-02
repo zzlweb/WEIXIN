@@ -37,7 +37,7 @@
     "minifyWXSS": true
   },
   "appid": "wxbb298bafde89bac1",
-  "projectname": "yundushu",
+  "projectname": "云图书",
   "libVersion": "2.14.1",
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "compileType": "miniprogram",

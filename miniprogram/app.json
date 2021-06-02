@@ -1,9 +1,11 @@
 {
   "pages": [
+    "pages/purchase/index",
+    "pages/poster/index",
+    "pages/my/index",
     "pages/start/index",
     "pages/index/index",
     "pages/publish/index",
-    "pages/my/index",
     "pages/search/index",
     "pages/kefu/index"
   ],

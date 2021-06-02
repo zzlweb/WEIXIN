@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-tab": "vant-weapp/tab/index",
+    "van-tabs": "vant-weapp/tabs/index"
+  },
+  "navigationBarTitleText": "我的购买",
+  "navigationBarBackgroundColor": "#5063c2",
+  "navigationBarTextStyle": "white"
+}

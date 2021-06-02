@@ -17,20 +17,20 @@
   </view>
   <!-- 我的发布 我的购买 帮助中心 -->
   <view class="flex-row user_center">
-    <view class="user_center_item flex-col">
+    <view class="user_center_item flex-col" data-src="/pages/poster/index" bindtap="goPage">
       <image src="/images/fabu.svg"></image>
       <view>我的发布</view>
     </view>
-    <view class="user_center_item flex-col">
+    <view class="user_center_item flex-col" data-src="" bindtap="goPage">
       <image src="/images/goumai.svg"></image>
       <view>我的购买</view>
     </view>
-    <view class="user_center_item flex-col">
+    <view class="user_center_item flex-col"  data-src="" bindtap="goPage">
       <image src="/images/helpcenter.svg"></image>
       <view>帮助中心</view>
     </view>
   </view>
-  <!-- 我的钱包 -->
+
   <block wx:for="{{dataPersonal}}" wx:key="id">
     <view class="cell_item flex-row" data-src="{{item.src}}" bindtap="goPage">
     <view class="cell_left flex-row">

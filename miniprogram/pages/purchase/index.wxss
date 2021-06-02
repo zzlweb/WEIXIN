@@ -1,0 +1,7 @@
+.tab-container{
+  height: 50px;
+}
+
+.van-tabs--line{
+  padding-top: 50px;
+}
