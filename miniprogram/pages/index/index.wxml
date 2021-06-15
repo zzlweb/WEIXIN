@@ -48,7 +48,7 @@
 <view hidden="{{!iscard}}">
       <!-- <block wx:if="{{list.length > 0}}"> -->
       <block wx:for="{{[1,2,3,4,5,6,7]}}" wx:key="index">
-      <view class="list_box flex-row ">
+      <view class="list_box flex-row" bindtap="goDetail">
             <image lazy-load="{{true}}" mode="aspectFit" class="list_box_img" src="/images/avator.png"></image>
             <view class="list_box_content flex-col fill-flex">
                   <view>
@@ -67,7 +67,7 @@
 <!-- 图书宫格展示 -->
 <view hidden="{{iscard}}">
       <view class="list_grid flex-row">
-            <view class="list_grid_box flex-col" wx:for="{{[1,2,3,4,5,6,7]}}" wx:key="index">
+            <view class="list_grid_box flex-col" wx:for="{{[1,2,3,4,5,6,7]}}" wx:key="index" bindtap="goDetail">
                   <image lazy-load="{{true}}" mode="aspectFit" class="list_grid_img" src="/images/avator.png"></image>
                   <view>
                         <view class="list_box_title text-cut">人人都是产品经理2.0</view>

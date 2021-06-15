@@ -159,6 +159,15 @@ Page({
   },
 
   /**
+   * 书籍详情页面
+   */
+  goDetail() {
+    wx.navigateTo({
+      url:'/pages/detail/index'
+    })
+  },
+
+  /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () { },
