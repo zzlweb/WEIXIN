@@ -30,6 +30,7 @@ Page({
    */
   onLoad() {
     this.getbanner()
+    this.getAllBooks()
   },
 
   /**
@@ -45,6 +46,15 @@ Page({
           });
         },
       });
+  },
+
+  /**
+   * 获取全部书籍信息
+   */
+  getAllBooks() {
+    wx.cloud.callFunction({name: 'QueryBook'}).then(res => {
+      console.log(res);
+    })
   },
 
   /**
