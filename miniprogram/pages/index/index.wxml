@@ -1,11 +1,13 @@
 <wxs src="../../common.wxs" module="morejs" />
 <view class="top-box">
       <view class="search_box flex-row">
-            <view class="search_content_box flex-row fill-flex">
+            <view class="search_content_box flex-row fill-flex" bindtap="search">
                   <image class="search_ico" src="/images/search.png"></image>
-                  <view bindtap="search" class="search_text">搜索想要的书籍，例如：机械设计</view>
+                  <view class="search_text">搜索想要的书籍，例如：机械设计</view>
             </view>
-            <image bindtap="changeCard" class="top_list" src="{{iscard?'/images/list.png':'/images/card.png'}}"></image>
+            <view bindtap="changeCard" class="top_list_icon">
+                  <image  src="{{iscard?'/images/list.png':'/images/card.png'}}"></image>
+            </view>
       </view>
       <swiper class="banner" autoplay circular>
             <block wx:for="{{banner}}" wx:key="id">
@@ -48,19 +50,19 @@
 <view hidden="{{!iscard}}">
       <!-- <block wx:if="{{list.length > 0}}"> -->
       <block wx:for="{{[1,2,3,4,5,6,7]}}" wx:key="index">
-      <view class="list_box flex-row" bindtap="goDetail">
-            <image lazy-load="{{true}}" mode="aspectFit" class="list_box_img" src="/images/avator.png"></image>
-            <view class="list_box_content flex-col fill-flex">
-                  <view>
-                        <view class="list_box_title">人人都是产品经理2.0</view>
-                        <view class="list_box_author">小明著</view>
-                  </view>
-                  <view class="list_box_bottom flex-row ">
-                        <view class="list_box_money">￥100.00元</view>
-                        <view class="list_time">一天前发布</view>
+            <view class="list_box flex-row" bindtap="goDetail">
+                  <image lazy-load="{{true}}" mode="aspectFit" class="list_box_img" src="/images/avator.png"></image>
+                  <view class="list_box_content flex-col fill-flex">
+                        <view>
+                              <view class="list_box_title">人人都是产品经理2.0</view>
+                              <view class="list_box_author">小明著</view>
+                        </view>
+                        <view class="list_box_bottom flex-row ">
+                              <view class="list_box_money">添加借阅</view>
+                              <image lazy-load="{{true}}" src="/images/add.svg"></image>
+                        </view>
                   </view>
             </view>
-      </view>
       </block>
       <!-- </block> -->
 </view>
@@ -74,7 +76,7 @@
                         <view class="list_box_author">小明著</view>
                   </view>
                   <view class="list_box_bottom flex-row ">
-                        <view class="list_box_money">￥100.00元</view>
+                        <view class="list_box_money">添加借阅</view>
                         <image lazy-load="{{true}}" src="/images/add.svg"></image>
                   </view>
             </view>
@@ -95,7 +97,6 @@
 
 <van-transition show="{{ scrollTop > 500 }}" duration="600" name="fade">
       <view class="totop" bindtap="gotop">
-            <image  lazy-load src="/images/toTop.svg"></image>
+            <image lazy-load src="/images/toTop.svg"></image>
       </view>
 </van-transition>
-
