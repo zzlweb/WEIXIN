@@ -11,5 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "vant-weapp": "^0.5.29"
+  },
+  "devDependencies": {
+    "wx-server-sdk": "^2.5.3"
   }
 }

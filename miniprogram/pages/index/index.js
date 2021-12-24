@@ -5,6 +5,9 @@ const db = wx.cloud.database();
 // 引入配置文件
 const config = require("../../config.js");
 const _ = db.command;
+
+wx.cloud.init()
+
 Page({
   /**
    * 页面的初始数据
@@ -52,9 +55,16 @@ Page({
    * 获取全部书籍信息
    */
   getAllBooks() {
-    wx.cloud.callFunction({name: 'QueryBook'}).then(res => {
-      console.log(res);
+    let that = this;
+    wx.cloud.callFunction({
+      name: 'QueryBook',
+      complete: res => {
+        that.setData({
+          bookList: [...res.result.data]
+        })
+      }
     })
+    console.log(that.bookList);
   },
 
   /**
