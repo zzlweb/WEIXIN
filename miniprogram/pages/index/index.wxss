@@ -204,9 +204,7 @@ view.top_list_icon > image{
   font-weight: bold;
 }
 
-.list_box_bottom .list_time{
-  font-size: 24rpx;
-  color:rgb(119, 118, 118);
+.list_box_bottom .image_list{
   margin-right: 40rpx;
 }
 

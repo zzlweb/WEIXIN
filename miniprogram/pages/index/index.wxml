@@ -3,7 +3,7 @@
   <view class="search_box flex-row">
     <view class="search_content_box flex-row fill-flex" bindtap="search">
       <image class="search_ico" src="/images/search.png"></image>
-      <view class="search_text">搜索想要的书籍，例如：机械设计</view>
+      <view class="search_text">搜索想要的书籍，例如：设计</view>
     </view>
     <view bindtap="changeCard" class="top_list_icon">
       <image src="{{iscard?'/images/list.png':'/images/card.png'}}"></image>
@@ -81,16 +81,20 @@
         lazy-load="{{true}}"
         mode="aspectFit"
         class="list_box_img"
-        src="{{index.url}}"
+        src="{{item.url}}"
       ></image>
       <view class="list_box_content flex-col fill-flex">
         <view>
-          <view class="list_box_title">类型{{index.name}}</view>
-          <view class="list_box_author">捐赠人{{index.author}}</view>
+          <view class="list_box_title">{{item.name}}</view>
+          <view class="list_box_author">捐赠人:{{item.author}}</view>
         </view>
         <view class="list_box_bottom flex-row ">
           <view class="list_box_money">添加借阅</view>
-          <image lazy-load="{{true}}" src="/images/add.svg"></image>
+          <image
+            class="image_list"
+            lazy-load="{{true}}"
+            src="/images/add.svg"
+          ></image>
         </view>
       </view>
     </view>
@@ -102,7 +106,7 @@
   <view class="list_grid flex-row">
     <view
       class="list_grid_box flex-col"
-      wx:for="{{[1,2,3,4,5,6,7]}}"
+      wx:for="{{bookList}}"
       wx:key="index"
       bindtap="goDetail"
     >
@@ -110,11 +114,11 @@
         lazy-load="{{true}}"
         mode="aspectFit"
         class="list_grid_img"
-        src="/images/avator.png"
+        src="{{item.url}}"
       ></image>
       <view>
-        <view class="list_box_title text-cut">人人都是产品经理2.0</view>
-        <view class="list_box_author">小明著</view>
+        <view class="list_box_title text-cut">{{item.name}}</view>
+        <view class="list_box_author">捐赠人:{{item.author}}</view>
       </view>
       <view class="list_box_bottom flex-row ">
         <view class="list_box_money">添加借阅</view>

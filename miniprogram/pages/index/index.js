@@ -19,13 +19,13 @@ Page({
     // 获取分类导航的数据
     college: JSON.parse(config.data).college,
     // 导航栏和状态栏高度
-    navigationBarAndStatusBarHeight:
-      wx.getStorageSync('statusBarHeight') +
+    navigationBarAndStatusBarHeight: wx.getStorageSync('statusBarHeight') +
       wx.getStorageSync('navigationBarHeight') +
       'px',
     collegeCur: -2,
     nomore: false,
     list: [1],
+    bookList: []
   },
 
   /**
@@ -54,17 +54,33 @@ Page({
   /**
    * 获取全部书籍信息
    */
-  getAllBooks() {
+  getAllBooks(name) {
     let that = this;
-    wx.cloud.callFunction({
-      name: 'QueryBook',
-      complete: res => {
-        that.setData({
-          bookList: [...res.result.data]
-        })
-      }
-    })
-    console.log(that.bookList);
+    if (!name) {
+      wx.cloud.callFunction({
+        name: 'QueryBook',
+        complete: res => {
+          const book = res.result.data
+          that.setData({
+            bookList: book
+          })
+        }
+      })
+    } else {
+      // 根据条件筛选
+      wx.cloud.callFunction({
+        name: 'QueryBook',
+        data: {
+          name
+        },
+        complete: res => {
+          const book = res.result.data
+          that.setData({
+            bookList: book
+          })
+        }
+      })
+    }
   },
 
   /**
@@ -140,12 +156,15 @@ Page({
    * 类型选择
    */
   collegeSelect(e) {
+    const that = this
     this.setData({
       collegeCur: e.currentTarget.dataset.id - 1,
       scrollLeft: (e.currentTarget.dataset.id - 3) * 100,
       showList: false,
+    }, function () {
+      const SelectBookItem = that.data.college.filter(item => item.id == that.data.collegeCur)
+      this.getAllBooks(SelectBookItem[0].name);
     })
-    // this.getList();
   },
 
   /**
@@ -157,7 +176,7 @@ Page({
       scrollLeft: -200,
       showList: false,
     })
-    // this.getList();
+    this.getAllBooks()
   },
 
   /**
@@ -183,42 +202,42 @@ Page({
    */
   goDetail() {
     wx.navigateTo({
-      url:'/pages/detail/index'
+      url: '/pages/detail/index'
     })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () { },
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () { },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () { },
+  onHide: function () {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () { },
+  onUnload: function () {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () { },
+  onPullDownRefresh: function () {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () { },
+  onReachBottom: function () {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () { },
+  onShareAppMessage: function () {},
 });
