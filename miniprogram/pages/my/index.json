@@ -3,8 +3,8 @@
     "nav-bar": "/components/navbar",
     "van-toast": "vant-weapp/toast/index",
     "van-button": "vant-weapp/button/index",
-    "van-cell":"vant-weapp/cell/index",
-    "van-group":"vant-weapp/cell-group/index"
+    "van-cell": "vant-weapp/cell/index",
+    "van-group": "vant-weapp/cell-group/index"
   },
   "navigationBarTitleText": "个人中心",
   "navigationBarBackgroundColor": "#5063c2",
