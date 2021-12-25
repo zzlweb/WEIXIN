@@ -1,12 +1,12 @@
 /* miniprogram/pages/index/index.wxss */
-.top-box{
+.top-box {
   position: relative;
   height: 450rpx;
   overflow: hidden;
   margin-bottom: 20rpx;
 }
 
-.top-box .search_box{
+.top-box .search_box {
   position: absolute;
   top: 340rpx;
   z-index: 10;
@@ -15,14 +15,14 @@
   align-items: center;
 }
 
-.search_content_box{
+.search_content_box {
   align-items: center;
   height: 66rpx;
   line-height: 66rpx;
   background-color: #fff;
   font-size: 24rpx;
   color: #707070;
-  border: 1px solid  #f8f8f8;
+  border: 1px solid #f8f8f8;
   border-radius: 50rpx;
   margin: 0 120rpx 0 40rpx;
 }
@@ -40,26 +40,26 @@
   right: 30rpx;
 }
 
-view.top_list_icon > image{
+view.top_list_icon > image {
   width: 100%;
   height: 100%;
 }
 
-.banner{
+.banner {
   width: 100vw;
   height: 450rpx;
 }
 
-.banner .banner_image{
+.banner .banner_image {
   width: 100%;
   height: 450rpx;
 }
 
-.top_nav.hidden{
+.top_nav.hidden {
   visibility: hidden;
 }
 
-.kind_content{
+.kind_content {
   width: 100%;
   height: 99rpx;
   display: flex;
@@ -77,13 +77,13 @@ view.top_list_icon > image{
   position: relative;
 }
 
-.tab_on::after{
+.tab_on::after {
   position: absolute;
   content: '';
   width: 100%;
   height: 2rpx;
   background-color: #5063c2;
-  bottom: 2px;
+  bottom: 0rpx;
 }
 
 .nav-item {
@@ -111,32 +111,32 @@ view.top_list_icon > image{
   box-sizing: border-box;
 }
 
-.kin_img{
+.kin_img {
   justify-content: center;
   align-items: center;
   height: 100%;
 }
 
-.kin_img image{
+.kin_img image {
   width: 35rpx;
   height: 35rpx;
 }
 
-.kind_list_box{
+.kind_list_box {
   position: absolute;
   top: 100rpx;
   width: 100%;
   left: 0;
-  box-shadow: 0 0 2px 0 rgba(0,0,0,.12);
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12);
 }
 
-.kind_list_box .card_box{
+.kind_list_box .card_box {
   padding: 20rpx 0 15rpx;
   width: 100%;
   background-color: #fff;
 }
 
-.card_item_text{
+.card_item_text {
   width: 100rpx;
   height: 60rpx;
   margin-bottom: 20rpx;
@@ -148,25 +148,25 @@ view.top_list_icon > image{
   border-radius: 10rpx;
 }
 
-.card_item_on{
+.card_item_on {
   background-color: #5063c2;
   color: #fff;
 }
 
 /* 列表展示部分 */
-.list_box{
+.list_box {
   height: 200rpx;
   background-color: #fff;
   align-items: center;
 }
 
-.list_box .list_box_img{
+.list_box .list_box_img {
   margin: 0 20rpx;
   height: 180rpx;
   width: 200rpx;
 }
 
-.list_box:last-child .list_box_content{
+.list_box:last-child .list_box_content {
   box-shadow: none;
 }
 
@@ -176,14 +176,13 @@ view.top_list_icon > image{
   box-shadow: 0 2rpx 0 0 rgb(236, 236, 236);
 }
 
-
-.list_box_content .list_box_title{
+.list_box_content .list_box_title {
   font-size: 32rpx;
   color: #000;
   margin-bottom: 10rpx;
 }
 
-.list_box_author{
+.list_box_author {
   margin-bottom: 20rpx;
   padding-right: 20rpx;
   font-size: 24rpx;
@@ -191,29 +190,29 @@ view.top_list_icon > image{
   justify-content: space-between;
 }
 
-.list_box_bottom{
+.list_box_bottom {
   justify-content: space-between;
   align-items: center;
   height: 60rpx;
   line-height: 60rpx;
 }
 
-.list_box_money{
+.list_box_money {
   color: red;
   font-size: 28rpx;
   font-weight: bold;
 }
 
-.list_box_bottom .image_list{
+.list_box_bottom .image_list {
   margin-right: 40rpx;
 }
 
-.list_grid{
+.list_grid {
   background-color: #fff;
 }
 
 /* 宫格展示部分 */
-.list_grid_box{
+.list_grid_box {
   height: 400rpx;
   padding: 0 40rpx;
   width: 50%;
@@ -221,30 +220,30 @@ view.top_list_icon > image{
   background-color: #fff;
 }
 
-.list_grid_box .list_grid_img{
+.list_grid_box .list_grid_img {
   height: 180rpx;
   width: 200rpx;
   margin: 20rpx auto;
 }
 
-.list_grid_box .list_box_title{
+.list_grid_box .list_box_title {
   font-size: 32rpx;
   color: #000;
 }
 
-.list_box_author{
+.list_box_author {
   font-size: 24rpx;
   color: rgb(119, 118, 118);
 }
 
-.list_box_bottom image{
+.list_box_bottom image {
   width: 40rpx;
   height: 40rpx;
 }
 
 .nocontent {
   width: 100%;
-  height: calc(100% - 400rpx);
+  height: 400rpx;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -253,7 +252,6 @@ view.top_list_icon > image{
 }
 
 .nocontent image {
-  padding-left: 80rpx;
   width: 340rpx;
   height: 272rpx;
 }
@@ -265,7 +263,7 @@ view.top_list_icon > image{
   color: #c6c6c8;
 }
 
-.unfixed{
+.unfixed {
   height: 100rpx;
   width: 100%;
 }
@@ -273,4 +271,8 @@ view.top_list_icon > image{
 .fixed {
   position: fixed;
   left: 0rpx;
+}
+
+.topTop {
+  background-color: #fff;
 }

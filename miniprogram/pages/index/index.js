@@ -3,10 +3,10 @@ const app = getApp();
 // 连接数据库
 const db = wx.cloud.database();
 // 引入配置文件
-const config = require("../../config.js");
+const config = require('../../config.js');
 const _ = db.command;
 
-wx.cloud.init()
+wx.cloud.init();
 
 Page({
   /**
@@ -15,25 +15,30 @@ Page({
   data: {
     scrollTop: 0,
     // 标题
-    title: "云图书",
+    title: '云图书',
     // 获取分类导航的数据
     college: JSON.parse(config.data).college,
     // 导航栏和状态栏高度
-    navigationBarAndStatusBarHeight: wx.getStorageSync('statusBarHeight') +
+    navigationBarAndStatusBarHeight:
+      wx.getStorageSync('statusBarHeight') +
       wx.getStorageSync('navigationBarHeight') +
       'px',
     collegeCur: -2,
     nomore: false,
     list: [1],
-    bookList: []
+    bookList: [],
+    // 加载状态
+    loading: true,
+    // 展示空白状态
+    showEmpty: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    this.getbanner()
-    this.getAllBooks()
+    this.getbanner();
+    this.getAllBooks();
   },
 
   /**
@@ -41,45 +46,65 @@ Page({
    */
   getbanner() {
     let that = this;
-    db.collection("banner")
-      .get({
-        success: function (res) {
-          that.setData({
-            banner: res.data[0].list,
-          });
-        },
-      });
+    db.collection('banner').get({
+      success: function (res) {
+        that.setData({
+          banner: res.data[0].list,
+        });
+      },
+    });
   },
 
   /**
    * 获取全部书籍信息
    */
-  getAllBooks(name) {
+  getAllBooks(QueryName) {
     let that = this;
-    if (!name) {
+    this.setData({
+      loading: true,
+      showEmpty: false,
+      bookList: [],
+    });
+    if (!QueryName) {
       wx.cloud.callFunction({
         name: 'QueryBook',
-        complete: res => {
-          const book = res.result.data
-          that.setData({
-            bookList: book
-          })
-        }
-      })
+        complete: (res) => {
+          const book = res.result.data;
+          this.isShowEmpty(book);
+        },
+      });
     } else {
       // 根据条件筛选
-      wx.cloud.callFunction({
-        name: 'QueryBook',
-        data: {
-          name
-        },
-        complete: res => {
-          const book = res.result.data
-          that.setData({
-            bookList: book
-          })
-        }
-      })
+      that.setData({
+        loading: true,
+        bookList: [],
+      });
+      db.collection('books')
+        .where({ type: QueryName })
+        .get()
+        .then((res) => {
+          const book = res.data;
+          this.isShowEmpty(book);
+        });
+    }
+  },
+
+  /**
+   * 根据数据展示空状态
+   */
+  isShowEmpty(book) {
+    if (book.length === 0) {
+      this.setData({
+        bookList: [],
+        loading: false,
+        showEmpty: true,
+      });
+    } else {
+      this.setData({
+        bookList: book,
+        loading: false,
+        showEmpty: false,
+      });
     }
   },
 
@@ -91,15 +116,15 @@ Page({
       key: 'iscard',
       success(res) {
         this.setData({
-          iscard: res.data
-        })
+          iscard: res.data,
+        });
       },
       fail() {
         this.setData({
-          iscard: true
-        })
-      }
-    })
+          iscard: true,
+        });
+      },
+    });
   },
 
   /**
@@ -109,20 +134,20 @@ Page({
     let that = this;
     if (that.data.iscard) {
       that.setData({
-        iscard: false
-      })
+        iscard: false,
+      });
       wx.setStorage({
         key: 'iscard',
         data: false,
-      })
+      });
     } else {
       that.setData({
-        iscard: true
-      })
+        iscard: true,
+      });
       wx.setStorage({
         key: 'iscard',
         data: true,
-      })
+      });
     }
   },
 
@@ -131,16 +156,16 @@ Page({
    */
   onPageScroll: function (e) {
     this.setData({
-      scrollTop: parseInt((e.scrollTop) * wx.getSystemInfoSync().pixelRatio)
-    })
+      scrollTop: parseInt(e.scrollTop * wx.getSystemInfoSync().pixelRatio),
+    });
 
     // 导航栏透明度
-    let Alpha = e.scrollTop * 1 / 100;
-    // 导航栏背景颜色    
+    let Alpha = (e.scrollTop * 1) / 100;
+    // 导航栏背景颜色
     let navigationBackgroundColor = 'rgba(83,96,194,' + Alpha + ')';
     this.setData({
       navigationBackgroundColor: navigationBackgroundColor,
-    })
+    });
   },
 
   /**
@@ -149,22 +174,27 @@ Page({
   search() {
     wx.navigateTo({
       url: '/pages/search/index',
-    })
+    });
   },
 
   /**
    * 类型选择
    */
   collegeSelect(e) {
-    const that = this
-    this.setData({
-      collegeCur: e.currentTarget.dataset.id - 1,
-      scrollLeft: (e.currentTarget.dataset.id - 3) * 100,
-      showList: false,
-    }, function () {
-      const SelectBookItem = that.data.college.filter(item => item.id == that.data.collegeCur)
-      this.getAllBooks(SelectBookItem[0].name);
-    })
+    const that = this;
+    this.setData(
+      {
+        collegeCur: e.currentTarget.dataset.id - 1,
+        scrollLeft: (e.currentTarget.dataset.id - 3) * 100,
+        showList: false,
+      },
+      function () {
+        const SelectBookItem = that.data.college.filter(
+          (item) => item.id == that.data.collegeCur,
+        );
+        this.getAllBooks(SelectBookItem[0].name);
+      },
+    );
   },
 
   /**
@@ -175,8 +205,8 @@ Page({
       collegeCur: -2,
       scrollLeft: -200,
       showList: false,
-    })
-    this.getAllBooks()
+    });
+    this.getAllBooks();
   },
 
   /**
@@ -184,8 +214,8 @@ Page({
    */
   showCateList() {
     this.setData({
-      showList: !this.data.showList
-    })
+      showList: !this.data.showList,
+    });
   },
 
   /**
@@ -193,8 +223,8 @@ Page({
    */
   gotop() {
     wx.pageScrollTo({
-      scrollTop: 0
-    })
+      scrollTop: 0,
+    });
   },
 
   /**
@@ -202,8 +232,8 @@ Page({
    */
   goDetail() {
     wx.navigateTo({
-      url: '/pages/detail/index'
-    })
+      url: '/pages/detail/index',
+    });
   },
 
   /**

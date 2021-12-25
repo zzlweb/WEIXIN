@@ -2,7 +2,7 @@ page {
   background-color: #f6f6f6;
 }
 
-.flex-row{
+.flex-row {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -14,7 +14,7 @@ page {
   flex-wrap: wrap;
 }
 
-.fill-flex{
+.fill-flex {
   flex: 1;
 }
 
@@ -43,15 +43,24 @@ page {
   letter-spacing: 4rpx;
 }
 
-.totop {
+.toTop {
   position: fixed;
   right: 30rpx;
   bottom: 80rpx;
 }
 
-.totop image {
+.toTop image {
   width: 90rpx;
   height: 90rpx;
   z-index: 9;
 }
 
+van-loading {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #000;
+}
