@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/borrow/index",
     "pages/index/index",
     "pages/start/index",
     "pages/my/index",
     "pages/purchase/index",
     "pages/poster/index",
-    "pages/publish/index",
     "pages/search/index",
     "pages/kefu/index",
     "pages/detail/index"
@@ -29,8 +29,8 @@
         "selectedIconPath": "/images/tabbar/home_on.png"
       },
       {
-        "pagePath": "pages/publish/index",
-        "text": "发布",
+        "pagePath": "pages/borrow/index",
+        "text": "借阅",
         "iconPath": "/images/tabbar/fabu.png",
         "selectedIconPath": "/images/tabbar/fabu1.png"
       },

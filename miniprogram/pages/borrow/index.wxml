@@ -1,0 +1,12 @@
+<!--miniprogram/pages/publish/index.wxml-->
+<view>
+  <van-swipe-cell
+  id="swipe-cell"
+  right-width="{{ 65 }}"
+>
+  <van-cell-group>
+    <van-cell title="单元格" value="内容" />
+  </van-cell-group>
+  <view slot="right">删除</view>
+</van-swipe-cell>
+</view>

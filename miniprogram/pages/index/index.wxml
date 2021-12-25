@@ -75,7 +75,7 @@
 <!-- 图书列表展示 -->
 <view hidden="{{!iscard}}">
   <block wx:for="{{bookList}}" wx:key="index">
-    <view class="list_box flex-row" bindtap="goDetail">
+    <view class="list_box flex-row" bindtap="goDetail" data-id="{{item}}">
       <image
         lazy-load="{{true}}"
         mode="aspectFit"
@@ -88,7 +88,7 @@
           <view class="list_box_author">捐赠人:{{item.author}}</view>
         </view>
         <view class="list_box_bottom flex-row ">
-          <view class="list_box_money">添加借阅</view>
+          <view class="list_box_money">添加收藏</view>
           <image
             class="image_list"
             lazy-load="{{true}}"
@@ -107,6 +107,7 @@
       wx:for="{{bookList}}"
       wx:key="index"
       bindtap="goDetail"
+      data-id="{{item}}"
     >
       <image
         lazy-load="{{true}}"
@@ -119,7 +120,7 @@
         <view class="list_box_author">捐赠人:{{item.author}}</view>
       </view>
       <view class="list_box_bottom flex-row ">
-        <view class="list_box_money">添加借阅</view>
+        <view class="list_box_money">添加收藏</view>
         <image lazy-load="{{true}}" src="/images/add.svg"></image>
       </view>
     </view>
@@ -130,11 +131,6 @@
 <view class="nocontent" wx:if="{{showEmpty}}">
   <van-empty>空空如也</van-empty>
 </view>
-
-<!-- <block wx:if="{{bookList.length>10}}">
-      <import src="/common.wxml" />
-      <template is="loadmore" data="{{nomore}}" />
-</block> -->
 
 <van-transition
   show="{{ scrollTop > 500 }}"

@@ -24,13 +24,14 @@ Page({
       wx.getStorageSync('navigationBarHeight') +
       'px',
     collegeCur: -2,
-    nomore: false,
     list: [1],
     bookList: [],
     // 加载状态
     loading: true,
     // 展示空白状态
     showEmpty: false,
+    // 收藏书籍的集合
+    collectionBook: JSON.parse(wx.getStorageSync('collectionBook')) || [],
   },
 
   /**
@@ -230,10 +231,14 @@ Page({
   /**
    * 书籍详情页面
    */
-  goDetail() {
-    wx.navigateTo({
-      url: '/pages/detail/index',
-    });
+  goDetail(e) {
+    // wx.navigateTo({
+    //   url: '/pages/borrow/index',
+    // });
+    // 本地缓存中存储收藏书籍
+    console.log(e.currentTarget.dataset.id);
+
+    // this.collectionBook.
   },
 
   /**
