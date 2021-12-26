@@ -31,7 +31,7 @@ Page({
     // 展示空白状态
     showEmpty: false,
     // 收藏书籍的集合
-    collectionBook: JSON.parse(wx.getStorageSync('collectionBook')) || [],
+    collectionBook: wx.getStorageSync('collectionBook'),
   },
 
   /**
@@ -232,13 +232,29 @@ Page({
    * 书籍详情页面
    */
   goDetail(e) {
-    // wx.navigateTo({
-    //   url: '/pages/borrow/index',
-    // });
-    // 本地缓存中存储收藏书籍
-    console.log(e.currentTarget.dataset.id);
+    let collection;
+    if (this.data.collectionBook && this.data.collectionBook.length > 0) {
+      collection = this.data.collectionBook;
+      const result = collection.some((item) => {
+        if (e.currentTarget.dataset.id._id == item._id) {
+          return true;
+        }
+      });
 
-    // this.collectionBook.
+      !result && collection.push(e.currentTarget.dataset.id);
+    } else {
+      collection = [];
+      collection.push(e.currentTarget.dataset.id);
+    }
+
+    this.setData(
+      {
+        collectionBook: collection,
+      },
+      () => {
+        wx.setStorageSync('collectionBook', this.data.collectionBook);
+      },
+    );
   },
 
   /**

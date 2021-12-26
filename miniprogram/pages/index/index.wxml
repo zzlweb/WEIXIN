@@ -75,7 +75,7 @@
 <!-- 图书列表展示 -->
 <view hidden="{{!iscard}}">
   <block wx:for="{{bookList}}" wx:key="index">
-    <view class="list_box flex-row" bindtap="goDetail" data-id="{{item}}">
+    <view class="list_box flex-row" >
       <image
         lazy-load="{{true}}"
         mode="aspectFit"
@@ -87,8 +87,8 @@
           <view class="list_box_title">{{item.name}}</view>
           <view class="list_box_author">捐赠人:{{item.author}}</view>
         </view>
-        <view class="list_box_bottom flex-row ">
-          <view class="list_box_money">添加收藏</view>
+        <view class="list_box_bottom flex-row " bindtap="goDetail"  data-id="{{item}}">
+          <view class="list_box_money">我想借阅</view>
           <image
             class="image_list"
             lazy-load="{{true}}"
@@ -106,8 +106,6 @@
       class="list_grid_box flex-col"
       wx:for="{{bookList}}"
       wx:key="index"
-      bindtap="goDetail"
-      data-id="{{item}}"
     >
       <image
         lazy-load="{{true}}"
@@ -115,12 +113,12 @@
         class="list_grid_img"
         src="{{item.url}}"
       ></image>
-      <view>
+      <view >
         <view class="list_box_title text-cut">{{item.name}}</view>
         <view class="list_box_author">捐赠人:{{item.author}}</view>
       </view>
-      <view class="list_box_bottom flex-row ">
-        <view class="list_box_money">添加收藏</view>
+      <view bindtap="goDetail" data-id="{{item}}" class="list_box_bottom flex-row ">
+        <view class="list_box_money">我想借阅</view>
         <image lazy-load="{{true}}" src="/images/add.svg"></image>
       </view>
     </view>
