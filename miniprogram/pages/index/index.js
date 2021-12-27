@@ -5,7 +5,6 @@ const db = wx.cloud.database();
 // 引入配置文件
 const config = require('../../config.js');
 const _ = db.command;
-
 wx.cloud.init();
 
 Page({
@@ -19,8 +18,7 @@ Page({
     // 获取分类导航的数据
     college: JSON.parse(config.data).college,
     // 导航栏和状态栏高度
-    navigationBarAndStatusBarHeight:
-      wx.getStorageSync('statusBarHeight') +
+    navigationBarAndStatusBarHeight: wx.getStorageSync('statusBarHeight') +
       wx.getStorageSync('navigationBarHeight') +
       'px',
     collegeCur: -2,
@@ -81,7 +79,9 @@ Page({
         bookList: [],
       });
       db.collection('books')
-        .where({ type: QueryName })
+        .where({
+          type: QueryName
+        })
         .get()
         .then((res) => {
           const book = res.data;
@@ -183,8 +183,7 @@ Page({
    */
   collegeSelect(e) {
     const that = this;
-    this.setData(
-      {
+    this.setData({
         collegeCur: e.currentTarget.dataset.id - 1,
         scrollLeft: (e.currentTarget.dataset.id - 3) * 100,
         showList: false,
@@ -229,7 +228,7 @@ Page({
   },
 
   /**
-   * 书籍详情页面
+   * 收藏书籍页面
    */
   goDetail(e) {
     let collection;
@@ -241,36 +240,54 @@ Page({
         }
       });
 
+      result && wx.showToast({
+        title: '请勿重复添加！',
+        icon: 'none',
+        duration: 1000
+      });
+
       !result && collection.push(e.currentTarget.dataset.id);
+
+      !result && wx.showToast({
+        title: '收藏成功！',
+        icon: 'none',
+        duration: 1000
+      });
+
     } else {
       collection = [];
       collection.push(e.currentTarget.dataset.id);
+      wx.showToast({
+        title: '收藏成功！',
+        icon: 'none',
+        duration: 1000
+      });
     }
 
-    this.setData(
-      {
-        collectionBook: collection,
-      },
-      () => {
-        wx.setStorageSync('collectionBook', this.data.collectionBook);
-      },
-    );
+    wx.setStorageSync('collectionBook', collection);
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {},
-
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    this.setData({
+      collectionBook: wx.getStorageSync('collectionBook'),
+    })
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function () {
+    this.setData({
+      collectionBook: wx.getStorageSync('collectionBook'),
+    })
+  },
 
   /**
    * 生命周期函数--监听页面卸载

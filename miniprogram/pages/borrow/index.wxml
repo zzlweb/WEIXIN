@@ -36,3 +36,11 @@
   wx:if="{{isEmpty}}"
 />
 
+<van-submit-bar
+  price="{{ total }}"
+  decimal-length="0"
+  button-text="提交借阅"
+  bind:submit="onSubmit"
+  suffix-label="本"
+/>
+

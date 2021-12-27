@@ -3,7 +3,7 @@
     "nav-bar": "../../components/navbar",
     "van-transition": "vant-weapp/transition/index",
     "van-empty": "vant-weapp/empty/index",
-    "van-loading": "vant-weapp/loading/index"
+    "van-loading": "vant-weapp/loading/index" 
   },
   "navigationStyle": "custom"
 }
