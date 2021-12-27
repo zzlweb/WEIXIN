@@ -27,7 +27,7 @@ Page({
   handleCollection() {
     this.setData({
       collectionBook: wx.getStorageSync('collectionBook'),
-      isEmpty: false, 
+      isEmpty: false,
       total: wx.getStorageSync('collectionBook') && wx.getStorageSync('collectionBook').length * 100
     }, () => {
       if (!this.data.collectionBook || this.data.collectionBook.length === 0) {
@@ -60,32 +60,42 @@ Page({
   /**
    * 提交借阅书籍
    */
-   onSubmit() {
-    if(!app.openid){
+  onSubmit() {
+    if (!app.openid) {
       wx.showToast({
         title: '请登录！',
         icon: 'none',
         duration: 1000
       });
-    }else{
+    } else {
       // 进行数据处理提交
       console.log(this.data.collectionBook);
       this.data.collectionBook.forEach(item => {
-        console.log(item._id);
-        db.collection("books").where({
-          _id: item._id
-        }).update({
+        wx.cloud.callFunction({
+          name: 'borrowBook',
           data: {
-            status: true, 
+            _id: item._id,
             openid: app.openid
-          }, 
-          success: function(res) {
-            console.log(res)
+          },
+          success: res => {
+            wx.showToast({
+              title: '借阅成功',
+              icon: 'none',
+              duration: 2000,
+            })
+            // 清空收藏数据更新本地数据
+            this.setData({
+              collectionBook: [],
+              isEmpty: true,
+              total: 0
+            }, () => {
+              wx.setStorageSync('collectionBook', []);
+            })
           }
         })
       })
     }
-   },
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
