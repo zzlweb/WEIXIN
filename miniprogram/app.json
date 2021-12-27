@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/borrow/index",
     "pages/index/index",
+    "pages/borrow/index",
     "pages/start/index",
     "pages/my/index",
     "pages/purchase/index",

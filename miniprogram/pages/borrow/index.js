@@ -20,13 +20,15 @@ Page({
    * 处理数据
    */
   handleCollection() {
-    if (!this.data.collectionBook || this.data.collectionBook.length === 0) {
-      this.setData({
-        isEmpty: true,
-      });
-    }
     this.setData({
       collectionBook: wx.getStorageSync('collectionBook'),
+      isEmpty: false
+    }, () => {
+      if (!this.data.collectionBook || this.data.collectionBook.length === 0) {
+        this.setData({
+          isEmpty: true,
+        });
+      }
     });
   },
 
@@ -34,18 +36,16 @@ Page({
    * 删除book
    */
   delCollection(e) {
-    const data = this.data.collectionBook.filter((item) => {
-      item._id !== e.currentTarget.dataset.id;
-    });
+    const Index = e.currentTarget.dataset.index
+    const collection = this.data.collectionBook
 
-    console.log(data);
+    collection.splice(Index, 1)
 
-    this.setData(
-      {
-        collectionBook: data,
+    this.setData({
+        collectionBook: collection,
       },
       () => {
-        wx.setStorageSync('collectionBook', data);
+        wx.setStorageSync('collectionBook', collection);
         this.handleCollection();
       },
     );

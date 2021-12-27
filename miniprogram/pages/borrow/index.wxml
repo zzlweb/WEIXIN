@@ -1,28 +1,38 @@
 <!--miniprogram/pages/publish/index.wxml-->
 <view wx:if="{{!isEmpty}}">
   <van-swipe-cell
-  id="swipe-cell"
-  right-width="{{ 65 }}"
-  wx:for="{{collectionBook}}"
-  wx:key="index"
->
-  <view class="book_item flex-row">
-    <image
+    id="swipe-cell"
+    right-width="{{ 65 }}"
+    wx:for="{{collectionBook}}"
+    wx:key="index"
+  >
+    <view class="book_item flex-row">
+      <image
         lazy-load="{{true}}"
         mode="aspectFit"
         class="book_item_image"
         src="{{item.url}}"
       ></image>
-    <view class="flex-col book_item_text">
-      <view>
-        书籍:{{item.name}}
+      <view class="flex-col book_item_text">
+        <view>
+          书籍:{{item.name}}
+        </view>
+        <view class="book_item_author">作者:{{item.author}}</view>
       </view>
-      <view class="book_item_author">作者:{{item.author}}</view>
     </view>
-  </view>
-  <view slot="right" bindtap="delCollection" data-id="{{item._id}}" class="delBtn flex-row">删除</view>
-</van-swipe-cell>
+    <view
+      slot="right"
+      bindtap="delCollection"
+      data-index="{{index}}"
+      class="delBtn flex-row"
+    >删除
+    </view>
+  </van-swipe-cell>
 </view>
 
-<van-empty image="error" description="暂无借阅" wx:if="{{isEmpty}}" />
+<van-empty
+  image="error"
+  description="暂无借阅"
+  wx:if="{{isEmpty}}"
+/>
 
