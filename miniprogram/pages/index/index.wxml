@@ -29,8 +29,6 @@
 <view class="top_nav {{scrollTop > 200 ? '':'hidden' }}">
   <nav-bar navbar-data="{{title}}" navigation-background-color="{{navigationBackgroundColor}}"></nav-bar>
 </view>
-<!-- 分类导航部分 -->
-<view class="{{ scrollTop > 470? 'unfixed' : '' }}"></view>
 <!-- 分类导航菜单展示 -->
 <view class="kind_content flex-row {{ scrollTop > 470? 'fixed' :''}}" style="top : {{ scrollTop > 470 ?navigationBarAndStatusBarHeight: 0 }}">
   <view class="nav-item {{-2==collegeCur?'tab_on':''}}" bindtap="selectAll">
@@ -75,7 +73,7 @@
 <!-- 图书列表展示 -->
 <view hidden="{{!iscard}}">
   <block wx:for="{{bookList}}" wx:key="index">
-    <view class="list_box flex-row" >
+    <view class="list_box flex-row">
       <image
         lazy-load="{{true}}"
         mode="aspectFit"
@@ -87,7 +85,11 @@
           <view class="list_box_title">{{item.name}}</view>
           <view class="list_box_author">捐赠人:{{item.author}}</view>
         </view>
-        <view class="list_box_bottom flex-row " bindtap="goDetail"  data-id="{{item}}">
+        <view
+          class="list_box_bottom flex-row "
+          bindtap="goDetail"
+          data-id="{{item}}"
+        >
           <view class="list_box_money">我想借阅</view>
           <image
             class="image_list"
@@ -113,11 +115,15 @@
         class="list_grid_img"
         src="{{item.url}}"
       ></image>
-      <view >
+      <view>
         <view class="list_box_title text-cut">{{item.name}}</view>
         <view class="list_box_author">捐赠人:{{item.author}}</view>
       </view>
-      <view bindtap="goDetail" data-id="{{item}}" class="list_box_bottom flex-row ">
+      <view
+        bindtap="goDetail"
+        data-id="{{item}}"
+        class="list_box_bottom flex-row "
+      >
         <view class="list_box_money">我想借阅</view>
         <image lazy-load="{{true}}" src="/images/add.svg"></image>
       </view>
@@ -140,5 +146,10 @@
   </view>
 </van-transition>
 
-<van-loading type="spinner" color="#5063c2" vertical  wx:if="{{loading}}"></van-loading>
+<van-loading
+  type="spinner"
+  color="#5063c2"
+  vertical
+  wx:if="{{loading}}"
+></van-loading>
 
