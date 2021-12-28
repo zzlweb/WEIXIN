@@ -10,7 +10,9 @@ Page({
     collectionBook: wx.getStorageSync('collectionBook'),
     // 是否显示空状态
     isEmpty: false,
-    total: 0
+    total: 0,
+    // 提交借阅状态
+    disabled: true,
   },
 
   /**
@@ -27,15 +29,22 @@ Page({
   handleCollection() {
     this.setData({
       collectionBook: wx.getStorageSync('collectionBook'),
-      isEmpty: false,
-      total: wx.getStorageSync('collectionBook') && wx.getStorageSync('collectionBook').length * 100
     }, () => {
       if (!this.data.collectionBook || this.data.collectionBook.length === 0) {
         this.setData({
           isEmpty: true,
+          disabled: true,
+          total: 0
+        });
+      } else {
+        this.setData({
+          isEmpty: false,
+          total: wx.getStorageSync('collectionBook') && wx.getStorageSync('collectionBook').length * 100,
+          disabled: false
         });
       }
-    });
+    })
+
   },
 
   /**
@@ -69,13 +78,14 @@ Page({
       });
     } else {
       // 进行数据处理提交
-      console.log(this.data.collectionBook);
+      console.log(app.userinfo);
       this.data.collectionBook.forEach(item => {
         wx.cloud.callFunction({
           name: 'borrowBook',
           data: {
             _id: item._id,
-            openid: app.openid
+            openid: app.openid,
+            name: app.userinfo.nickName
           },
           success: res => {
             wx.showToast({
@@ -87,7 +97,8 @@ Page({
             this.setData({
               collectionBook: [],
               isEmpty: true,
-              total: 0
+              total: 0,
+              disabled: true,
             }, () => {
               wx.setStorageSync('collectionBook', []);
             })

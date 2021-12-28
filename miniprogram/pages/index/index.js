@@ -232,39 +232,44 @@ Page({
    */
   goDetail(e) {
     let collection;
-    if (this.data.collectionBook && this.data.collectionBook.length > 0) {
-      collection = this.data.collectionBook;
-      const result = collection.some((item) => {
-        if (e.currentTarget.dataset.id._id == item._id) {
-          return true;
-        }
-      });
 
-      result && wx.showToast({
-        title: '请勿重复添加！',
-        icon: 'none',
-        duration: 1000
-      });
+    this.setData({
+      collectionBook: wx.getStorageSync('collectionBook'),
+    }, () => {
+      if (this.data.collectionBook && this.data.collectionBook.length > 0) {
+        collection = this.data.collectionBook;
+        const result = collection.some((item) => {
+          if (e.currentTarget.dataset.id._id == item._id) {
+            return true;
+          }
+        });
 
-      !result && collection.push(e.currentTarget.dataset.id);
+        result && wx.showToast({
+          title: '请勿重复添加！',
+          icon: 'none',
+          duration: 1000
+        });
 
-      !result && wx.showToast({
-        title: '收藏成功！',
-        icon: 'none',
-        duration: 1000
-      });
+        !result && collection.push(e.currentTarget.dataset.id);
 
-    } else {
-      collection = [];
-      collection.push(e.currentTarget.dataset.id);
-      wx.showToast({
-        title: '收藏成功！',
-        icon: 'none',
-        duration: 1000
-      });
-    }
+        !result && wx.showToast({
+          title: '收藏成功！',
+          icon: 'none',
+          duration: 1000
+        });
 
-    wx.setStorageSync('collectionBook', collection);
+      } else {
+        collection = [];
+        collection.push(e.currentTarget.dataset.id);
+        wx.showToast({
+          title: '收藏成功！',
+          icon: 'none',
+          duration: 1000
+        });
+      }
+
+      wx.setStorageSync('collectionBook', collection);
+    })
   },
 
   /**
@@ -278,6 +283,9 @@ Page({
     this.setData({
       collectionBook: wx.getStorageSync('collectionBook'),
     })
+
+    // 根据当前的标签请求数据
+
   },
 
   /**

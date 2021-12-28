@@ -1,45 +1,77 @@
 <!-- miniprogram/pages/my/index.wxml -->
-<view class="personal" >
+<view class="personal">
   <view class="top_user_box flex-row">
     <view class="top_user_box_left flex-col">
-      <button class="top_user_name_button" wx:if="{{!userInfo}}" open-type="getUserInfo" bindtap="bindGetUserInfo">
+      <button
+        class="top_user_name_button"
+        wx:if="{{!userInfo}}"
+        open-type="getUserInfo"
+        bindtap="bindGetUserInfo"
+      >
         授权登录
       </button>
       <view class="top_user_name" wx:if="{{userInfo}}">{{userInfo.nickName}}</view>
       <view class="top_user_name_bottom" hover-stop-propagation="false">一键登录，体验所有功能</view>
     </view>
-    <view class="top_user_box_right" hover-class="none" hover-stop-propagation="false">
+    <view
+      class="top_user_box_right"
+      hover-class="none"
+      hover-stop-propagation="false"
+    >
       <view class="avator">
-        <image wx:if="{{ userInfo }}" bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <image
+          wx:if="{{ userInfo }}"
+          bindtap="bindViewTap"
+          class="userinfo-avatar"
+          src="{{userInfo.avatarUrl}}"
+          mode="cover"
+        ></image>
         <image wx:if="{{!userInfo}}" src="/images/avator.png"></image>
       </view>
     </view>
   </view>
   <!-- 我的发布 我的购买 帮助中心 -->
   <view class="flex-row user_center">
-    <view class="user_center_item flex-col" data-src="/pages/poster/index" bindtap="goPage">
+    <view
+      class="user_center_item flex-col"
+      data-src="/pages/poster/index"
+      bindtap="goPage"
+    >
       <image src="/images/fabu.svg"></image>
-      <view>我的发布</view>
+      <view>我要捐赠</view>
     </view>
-    <view class="user_center_item flex-col" data-src="" bindtap="goPage">
+    <view
+      class="user_center_item flex-col"
+      data-src="/pages/detail/index"
+      bindtap="goPage"
+    >
       <image src="/images/goumai.svg"></image>
-      <view>我的购买</view>
+      <view>我的借阅</view>
     </view>
-    <view class="user_center_item flex-col"  data-src="" bindtap="goPage">
+    <view
+      class="user_center_item flex-col"
+      data-src=""
+      bindtap="goPage"
+    >
       <image src="/images/helpcenter.svg"></image>
-      <view>帮助中心</view>
+      <view>书籍中心</view>
     </view>
   </view>
 
   <block wx:for="{{dataPersonal}}" wx:key="id">
-    <view class="cell_item flex-row" data-src="{{item.src}}" bindtap="goPage">
-    <view class="cell_left flex-row">
-      <image src="{{item.image}}"></image>
-      <view class="cell_title">{{item.title}}</view>
+    <view
+      class="cell_item flex-row"
+      data-src="{{item.src}}"
+      bindtap="goPage"
+    >
+      <view class="cell_left flex-row">
+        <image src="{{item.image}}"></image>
+        <view class="cell_title">{{item.title}}</view>
+      </view>
+      <view class="cell_right">
+        <image class="right_arrow" src="/images/go.png"></image>
+      </view>
     </view>
-    <view class="cell_right">
-      <image class="right_arrow" src="/images/go.png"></image>
-    </view>
-  </view>
   </block>
 </view>
+

@@ -37,6 +37,7 @@
 />
 
 <van-submit-bar
+  disabled="{{disabled}}"
   price="{{ total }}"
   decimal-length="0"
   button-text="提交借阅"

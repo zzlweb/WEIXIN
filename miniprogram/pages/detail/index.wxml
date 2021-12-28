@@ -1,2 +1,11 @@
 <!--miniprogram/pages/detail/index.wxml-->
-<text>书籍详情页面</text>
+<!-- 我的借阅 -->
+
+<view
+  class=""
+  hover-class="none"
+  hover-stop-propagation="false"
+>
+  我的借阅
+</view>
+

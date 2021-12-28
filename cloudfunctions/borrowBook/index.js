@@ -11,7 +11,8 @@ exports.main = async (event, context) => {
           }).update({
             data: {
               status: true, 
-              openid: event.openid
+              openid: event.openid, 
+              borrower: event.name
             },
           })
     } catch (e) {

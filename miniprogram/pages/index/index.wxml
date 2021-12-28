@@ -73,7 +73,7 @@
 <!-- 图书列表展示 -->
 <view hidden="{{!iscard}}">
   <block wx:for="{{bookList}}" wx:key="index">
-    <view class="list_box flex-row">
+    <view class="list_box flex-row" wx:if="{{!item.status}}">
       <image
         lazy-load="{{true}}"
         mode="aspectFit"
@@ -96,6 +96,27 @@
             lazy-load="{{true}}"
             src="/images/add.svg"
           ></image>
+        </view>
+      </view>
+    </view>
+
+    <view class="list_box flex-row disable" wx:else>
+      <image
+        lazy-load="{{true}}"
+        mode="aspectFit"
+        class="list_box_img"
+        src="{{item.url}}"
+      ></image>
+      <view class="list_box_content flex-col fill-flex">
+        <view>
+          <view class="list_box_title">{{item.name}}</view>
+          <view class="list_box_author">捐赠人:{{item.author}}</view>
+        </view>
+        <view class="list_box_bottom flex-row">
+          <view class="list_box_money ">借阅人:</view>
+          <view class="borrow_name">
+            {{item.borrower}}
+          </view>
         </view>
       </view>
     </view>
