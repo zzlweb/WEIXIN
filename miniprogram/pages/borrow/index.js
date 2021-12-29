@@ -1,5 +1,5 @@
 // miniprogram/pages/publish/index.js
-const app = getApp()
+const app = getApp();
 const db = wx.cloud.database();
 
 Page({
@@ -27,36 +27,44 @@ Page({
    * 处理数据
    */
   handleCollection() {
-    this.setData({
-      collectionBook: wx.getStorageSync('collectionBook'),
-    }, () => {
-      if (!this.data.collectionBook || this.data.collectionBook.length === 0) {
-        this.setData({
-          isEmpty: true,
-          disabled: true,
-          total: 0
-        });
-      } else {
-        this.setData({
-          isEmpty: false,
-          total: wx.getStorageSync('collectionBook') && wx.getStorageSync('collectionBook').length * 100,
-          disabled: false
-        });
-      }
-    })
-
+    this.setData(
+      {
+        collectionBook: wx.getStorageSync('collectionBook'),
+      },
+      () => {
+        if (
+          !this.data.collectionBook ||
+          this.data.collectionBook.length === 0
+        ) {
+          this.setData({
+            isEmpty: true,
+            disabled: true,
+            total: 0,
+          });
+        } else {
+          this.setData({
+            isEmpty: false,
+            total:
+              wx.getStorageSync('collectionBook') &&
+              wx.getStorageSync('collectionBook').length * 100,
+            disabled: false,
+          });
+        }
+      },
+    );
   },
 
   /**
    * 删除book
    */
   delCollection(e) {
-    const Index = e.currentTarget.dataset.index
-    const collection = this.data.collectionBook
+    const Index = e.currentTarget.dataset.index;
+    const collection = this.data.collectionBook;
 
-    collection.splice(Index, 1)
+    collection.splice(Index, 1);
 
-    this.setData({
+    this.setData(
+      {
         collectionBook: collection,
       },
       () => {
@@ -74,37 +82,46 @@ Page({
       wx.showToast({
         title: '请登录！',
         icon: 'none',
-        duration: 1000
+        duration: 1000,
       });
     } else {
       // 进行数据处理提交
-      console.log(app.userinfo);
-      this.data.collectionBook.forEach(item => {
+      this.data.collectionBook.forEach((item) => {
         wx.cloud.callFunction({
           name: 'borrowBook',
           data: {
             _id: item._id,
             openid: app.openid,
-            name: app.userinfo.nickName
+            name: app.userinfo.nickName,
           },
-          success: res => {
+          success: (res) => {
             wx.showToast({
               title: '借阅成功',
               icon: 'none',
               duration: 2000,
-            })
+            });
             // 清空收藏数据更新本地数据
-            this.setData({
-              collectionBook: [],
-              isEmpty: true,
-              total: 0,
-              disabled: true,
-            }, () => {
-              wx.setStorageSync('collectionBook', []);
-            })
-          }
-        })
-      })
+            this.setData(
+              {
+                collectionBook: [],
+                isEmpty: true,
+                total: 0,
+                disabled: true,
+              },
+              () => {
+                wx.setStorageSync('collectionBook', []);
+              },
+            );
+          },
+          fail: (err) => {
+            wx.showToast({
+              title: '操作失败',
+              icon: 'none',
+              duration: 2000,
+            });
+          },
+        });
+      });
     }
   },
 

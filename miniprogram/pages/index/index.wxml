@@ -101,12 +101,14 @@
     </view>
 
     <view class="list_box flex-row disable" wx:else>
-      <image
+      <view class="list_box_img">
+        <image
         lazy-load="{{true}}"
         mode="aspectFit"
-        class="list_box_img"
         src="{{item.url}}"
       ></image>
+        <view class="tags">已借阅</view>
+      </view>
       <view class="list_box_content flex-col fill-flex">
         <view>
           <view class="list_box_title">{{item.name}}</view>
@@ -130,12 +132,14 @@
       wx:for="{{bookList}}"
       wx:key="index"
     >
-      <image
-        lazy-load="{{true}}"
-        mode="aspectFit"
-        class="list_grid_img"
-        src="{{item.url}}"
-      ></image>
+      <view class="list_box_img">
+        <view class="tags" wx:if="{{item.status}}" >已借阅</view>
+        <image
+          lazy-load="{{true}}"
+          mode="aspectFit"
+          src="{{item.url}}"
+        ></image>
+      </view>
       <view>
         <view class="list_box_title text-cut">{{item.name}}</view>
         <view class="list_box_author">捐赠人:{{item.author}}</view>
@@ -144,10 +148,18 @@
         bindtap="goDetail"
         data-id="{{item}}"
         class="list_box_bottom flex-row "
+        wx:if="{{!item.status}}"
       >
         <view class="list_box_money">我想借阅</view>
         <image lazy-load="{{true}}" src="/images/add.svg"></image>
       </view>
+
+      <view class="list_box_bottom flex-row" wx:else>
+          <view class="list_box_money ">借阅人:</view>
+          <view class="borrow_name">
+            {{item.borrower}}
+          </view>
+        </view>
     </view>
   </view>
 </view>

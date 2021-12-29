@@ -18,7 +18,8 @@ Page({
     // 获取分类导航的数据
     college: JSON.parse(config.data).college,
     // 导航栏和状态栏高度
-    navigationBarAndStatusBarHeight: wx.getStorageSync('statusBarHeight') +
+    navigationBarAndStatusBarHeight:
+      wx.getStorageSync('statusBarHeight') +
       wx.getStorageSync('navigationBarHeight') +
       'px',
     collegeCur: -2,
@@ -68,7 +69,7 @@ Page({
       wx.cloud.callFunction({
         name: 'QueryBook',
         complete: (res) => {
-          const book = res.result.data;
+          const book = res.result.data.sort(config.compare('status'));
           this.isShowEmpty(book);
         },
       });
@@ -80,11 +81,11 @@ Page({
       });
       db.collection('books')
         .where({
-          type: QueryName
+          type: QueryName,
         })
         .get()
         .then((res) => {
-          const book = res.data;
+          const book = res.data.sort(config.compare('status'));
           this.isShowEmpty(book);
         });
     }
@@ -183,7 +184,8 @@ Page({
    */
   collegeSelect(e) {
     const that = this;
-    this.setData({
+    this.setData(
+      {
         collegeCur: e.currentTarget.dataset.id - 1,
         scrollLeft: (e.currentTarget.dataset.id - 3) * 100,
         showList: false,
@@ -233,43 +235,47 @@ Page({
   goDetail(e) {
     let collection;
 
-    this.setData({
-      collectionBook: wx.getStorageSync('collectionBook'),
-    }, () => {
-      if (this.data.collectionBook && this.data.collectionBook.length > 0) {
-        collection = this.data.collectionBook;
-        const result = collection.some((item) => {
-          if (e.currentTarget.dataset.id._id == item._id) {
-            return true;
-          }
-        });
+    this.setData(
+      {
+        collectionBook: wx.getStorageSync('collectionBook'),
+      },
+      () => {
+        if (this.data.collectionBook && this.data.collectionBook.length > 0) {
+          collection = this.data.collectionBook;
+          const result = collection.some((item) => {
+            if (e.currentTarget.dataset.id._id == item._id) {
+              return true;
+            }
+          });
 
-        result && wx.showToast({
-          title: '请勿重复添加！',
-          icon: 'none',
-          duration: 1000
-        });
+          result &&
+            wx.showToast({
+              title: '请勿重复添加！',
+              icon: 'none',
+              duration: 1000,
+            });
 
-        !result && collection.push(e.currentTarget.dataset.id);
+          !result && collection.push(e.currentTarget.dataset.id);
 
-        !result && wx.showToast({
-          title: '收藏成功！',
-          icon: 'none',
-          duration: 1000
-        });
+          !result &&
+            wx.showToast({
+              title: '收藏成功！',
+              icon: 'none',
+              duration: 1000,
+            });
+        } else {
+          collection = [];
+          collection.push(e.currentTarget.dataset.id);
+          wx.showToast({
+            title: '收藏成功！',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
 
-      } else {
-        collection = [];
-        collection.push(e.currentTarget.dataset.id);
-        wx.showToast({
-          title: '收藏成功！',
-          icon: 'none',
-          duration: 1000
-        });
-      }
-
-      wx.setStorageSync('collectionBook', collection);
-    })
+        wx.setStorageSync('collectionBook', collection);
+      },
+    );
   },
 
   /**
@@ -282,10 +288,12 @@ Page({
   onShow: function () {
     this.setData({
       collectionBook: wx.getStorageSync('collectionBook'),
-    })
+    });
 
-    // 根据当前的标签请求数据
-
+    const SelectBookItem = this.data.college.filter(
+      (item) => item.id == this.data.collegeCur,
+    );
+    this.getAllBooks(SelectBookItem[0] && SelectBookItem[0].name);
   },
 
   /**
@@ -294,7 +302,7 @@ Page({
   onHide: function () {
     this.setData({
       collectionBook: wx.getStorageSync('collectionBook'),
-    })
+    });
   },
 
   /**
