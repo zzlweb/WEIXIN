@@ -226,7 +226,7 @@ view.top_list_icon > image {
   margin-right: 40rpx;
 }
 
-.list_box .list_box_bottom .borrow_name {
+.list_box .list_box_bottom .borrow_name ,.list_grid .borrow_name  {
   font-size: 24rpx;
   margin-right: 40rpx;
   color: rgb(119, 118, 118);

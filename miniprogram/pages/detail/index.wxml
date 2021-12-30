@@ -1,11 +1,52 @@
 <!--miniprogram/pages/detail/index.wxml-->
 <!-- 我的借阅 -->
+<!-- 1.根据appid 查询借阅书籍
+     2.归还书籍 
+-->
+<view class="detail_page">
+  <view wx:if="{{!isEmpty}}">
+    <van-swipe-cell
+      id="swipe-cell"
+      right-width="{{ 65 }}"
+      wx:for="{{borrow_List}}"
+      wx:key="index"
+    >
+      <view class="book_item flex-row">
+        <image
+          lazy-load="{{true}}"
+          mode="aspectFit"
+          class="book_item_image"
+          src="{{item.url}}"
+        ></image>
+        <view class="flex-col book_item_text">
+          <view>
+            书籍:{{item.name}}
+          </view>
+          <view class="book_item_author">作者:{{item.author}}</view>
+        </view>
+      </view>
+      <view
+        slot="right"
+        bindtap="delCollection"
+        data-id="{{item._id}}"
+        class="delBtn flex-row"
+      >归还书籍
+      </view>
+    </van-swipe-cell>
+  </view>
 
-<view
-  class=""
-  hover-class="none"
-  hover-stop-propagation="false"
->
-  我的借阅
+  <van-empty
+    image="error"
+    description="暂无借阅"
+    wx:if="{{isEmpty}}"
+  >
+    <van-button
+      plain
+      class="bottom-button"
+      data-src="/pages/index/index"
+      bind:click="goPage"
+    >返回首页
+    </van-button>
+  </van-empty>
 </view>
 

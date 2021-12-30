@@ -1,1 +1,42 @@
 /* miniprogram/pages/detail/index.wxss */
+.detail_page{
+  height: 100%;
+  overflow: hidden;
+}
+
+.book_item {
+  background-color: #fff;
+  height: 140rpx;
+  align-items: center;
+  padding-left: 20rpx;
+}
+
+.book_item_image {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 40rpx;
+}
+
+.book_item_text {
+  justify-content: center;
+  font-size: 28rpx;
+}
+
+.book_item_text > view:first-child {
+  margin-bottom: 20rpx;
+}
+
+.book_item_author {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.detail_page .van-swipe-cell__right {
+  background-color: #5063c2;
+  color: #fff;
+  font-size: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 130rpx;
+}
