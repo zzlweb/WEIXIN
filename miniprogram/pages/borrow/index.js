@@ -1,7 +1,7 @@
 // miniprogram/pages/publish/index.js
 const app = getApp();
 const db = wx.cloud.database();
-
+wx.cloud.init();
 Page({
   /**
    * 页面的初始数据
@@ -77,7 +77,8 @@ Page({
   /**
    * 提交借阅书籍
    */
-  onSubmit() {
+   async onSubmit() {
+    let delIndex = []
     if (!app.openid) {
       wx.showToast({
         title: '请登录！',
@@ -85,7 +86,37 @@ Page({
         duration: 1000,
       });
     } else {
-      // 进行数据处理提交
+      // 判断收藏数据中是否含有失效数据
+      for( let item  of this.data.collectionBook){
+        const bookData = await db.collection('books').where({
+          _id : `${item._id}`
+        }).get()
+
+        if(bookData.data[0].status){
+          // 说明该书籍已经被收藏，需要从收藏删除该书籍
+          delIndex.push(item)
+        }
+      }
+
+      if(delIndex.length > 0 ){
+        wx.showToast({
+          title: '有书籍已被借阅, 请移除！', 
+          icon: 'none',
+          duration: 2000,
+        })
+
+        delIndex.forEach(item => {
+          const collection = this.data.collectionBook
+          collection.forEach(it => {
+            if(item._id === it._id){
+              it.status = true 
+            }
+          })
+          this.setData({
+            collectionBook: collection
+          })
+        })
+      }else{
       this.data.collectionBook.forEach((item) => {
         wx.cloud.callFunction({
           name: 'borrowBook',
@@ -122,6 +153,8 @@ Page({
           },
         });
       });
+      }
+
     }
   },
 

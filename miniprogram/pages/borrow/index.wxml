@@ -7,12 +7,15 @@
     wx:key="index"
   >
     <view class="book_item flex-row">
-      <image
-        lazy-load="{{true}}"
-        mode="aspectFit"
-        class="book_item_image"
-        src="{{item.url}}"
-      ></image>
+      <view class="img_box">
+        <view class="text" wx:if="{{item.status}}">已借阅</view>
+        <image
+          lazy-load="{{true}}"
+          mode="aspectFit"
+          class="book_item_image"
+          src="{{item.url}}"
+        ></image>
+      </view>
       <view class="flex-col book_item_text">
         <view>
           书籍:{{item.name}}
