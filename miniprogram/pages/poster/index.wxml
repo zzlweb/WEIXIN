@@ -59,14 +59,23 @@
         <van-uploader
           file-list="{{ fileList }}"
           max-count="1"
+          preview-image
           deletable="{{ true }}"
-          accept="iamge"
+          accept="image"
           deletable
+          use-before-read
+          bind:before-read="beforeRead"
+          bind:after-read="uploadToCloud"
+          bind:delete="deleteImg"
         />
       </view>
 
       <view class="flex-row submit_btn">
-        <button type="primary" formType="submit">提交
+        <button
+          type="primary"
+          disabled="{{disabled}}"
+          formType="submit"
+        >提交
         </button>
       </view>
     </van-cell-group>

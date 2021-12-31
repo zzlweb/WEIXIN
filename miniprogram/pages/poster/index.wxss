@@ -2,10 +2,6 @@ page{
   background-color: #fff;
 }
 
-van-cell {
-  margin-bottom: 20rpx;
-}
-
 .text_img{
   font-size: 28rpx;
   color: #646566;
@@ -24,9 +20,9 @@ van-cell {
 
 .submit_btn button {
   width: 240rpx;
-  height: 60rpx;
-  font-size: 24rpx;
-  line-height: 60rpx;
+  height: 80rpx;
+  font-size: 26rpx;
+  line-height: 80rpx;
   margin-top: 60rpx;
   background-color: #5063c2 !important;
 }

@@ -5,15 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    name: '', 
-    author: "", 
+    name: '',
+    author: "",
     columns: ['平面', '交互', '前端', '创新', '新闻', '杂志', '其他'],
-    type: "", 
+    type: "",
     // 控制popup 显示隐藏
     show: false,
     selectType: '平面',
     // 图片集合
-    fileList: [],
+    fileList: null,
+    // 上传按钮状态: 默认禁用
+    disabled: true,
+
   },
 
   /**
@@ -25,7 +28,11 @@ Page({
 
   // picker 选中回调
   onConfirm(event) {
-    const { picker, value, index } = event.detail;
+    const {
+      picker,
+      value,
+      index
+    } = event.detail;
     this.setData({
       type: value,
       show: false
@@ -39,7 +46,11 @@ Page({
   },
 
   onChange(event) {
-    const { picker, value, index } = event.detail;
+    const {
+      picker,
+      value,
+      index
+    } = event.detail;
     this.setData({
       selectType: value,
     })
@@ -47,29 +58,96 @@ Page({
 
   // 展示popup
   showPopup() {
-    this.setData({ show: true });
+    this.setData({
+      show: true
+    });
   },
 
   // 关闭popup
   onClose() {
-    this.setData({ show: false });
+    this.setData({
+      show: false
+    });
   },
 
-  afterRead(event) {
-    const { file } = event.detail;
-    // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
-    wx.uploadFile({
-      url: 'https://example.weixin.qq.com/upload', // 仅为示例，非真实的接口地址
-      filePath: file.url,
-      name: 'file',
-      formData: { user: 'test' },
-      success(res) {
-        // 上传完成需要更新 fileList
-        const { fileList = [] } = this.data;
-        fileList.push({ ...file, url: res.data });
-        this.setData({ fileList });
-      },
+  beforeRead(event) {
+    const {
+      file,
+      callback
+    } = event.detail;
+    callback(file.type === 'image');
+    this.setData({
+      fileList: file
+    })
+  },
+
+  // 上传图片
+  uploadToCloud() {
+    wx.cloud.init();
+    const {
+      fileList
+    } = this.data;
+    if (!fileList.url) {
+      wx.showToast({
+        title: '请选择图片',
+        icon: 'none'
+      });
+    } else {
+      // 获取图片类型
+      const index = fileList.url.indexOf('.')
+      const type = fileList.url.substring(index)
+      const uploadTasks = this.uploadFilePromise("indexPage/" + new Date().getTime() + `${type}`, fileList);
+      wx.showLoading({
+        title: '上传中！',
+      })
+      uploadTasks.then(data => {
+          wx.hideLoading()
+          wx.showToast({
+            title: '上传成功',
+            icon: 'none'
+          });
+          const newFileList = [{url: data.fileID}]
+            
+          this.setData({
+            cloudPath: data,
+            fileList: newFileList
+          });
+        })
+        .catch(e => {
+          wx.hideLoading()
+          wx.showToast({
+            title: '上传失败',
+            icon: 'none'
+          });
+        });
+    }
+  },
+
+  uploadFilePromise(fileName, chooseResult) {
+    return wx.cloud.uploadFile({
+      cloudPath: fileName,
+      filePath: chooseResult.url
     });
+  },
+
+  // 删除图片
+  deleteImg() {
+    const that = this 
+    wx.cloud.deleteFile({
+      fileList: [this.data.fileList[0].url]
+    }).then(res => {
+      wx.showToast({
+        title: '删除成功',
+      })
+      this.setData({
+        fileList: null
+      })
+    }).catch(error => {
+      // handle error
+      wx.showToast({
+        title: '删除失败',
+      })
+    })
   },
 
   /**
