@@ -5,7 +5,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    name: '', 
+    author: "", 
+    columns: ['平面', '交互', '前端', '创新', '新闻', '杂志', '其他'],
+    type: "", 
+    // 控制popup 显示隐藏
+    show: false,
+    selectType: '平面',
+    // 图片集合
+    fileList: [],
   },
 
   /**
@@ -13,6 +21,55 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+
+  // picker 选中回调
+  onConfirm(event) {
+    const { picker, value, index } = event.detail;
+    this.setData({
+      type: value,
+      show: false
+    })
+  },
+
+  onCancel() {
+    this.setData({
+      show: false
+    })
+  },
+
+  onChange(event) {
+    const { picker, value, index } = event.detail;
+    this.setData({
+      selectType: value,
+    })
+  },
+
+  // 展示popup
+  showPopup() {
+    this.setData({ show: true });
+  },
+
+  // 关闭popup
+  onClose() {
+    this.setData({ show: false });
+  },
+
+  afterRead(event) {
+    const { file } = event.detail;
+    // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
+    wx.uploadFile({
+      url: 'https://example.weixin.qq.com/upload', // 仅为示例，非真实的接口地址
+      filePath: file.url,
+      name: 'file',
+      formData: { user: 'test' },
+      success(res) {
+        // 上传完成需要更新 fileList
+        const { fileList = [] } = this.data;
+        fileList.push({ ...file, url: res.data });
+        this.setData({ fileList });
+      },
+    });
   },
 
   /**

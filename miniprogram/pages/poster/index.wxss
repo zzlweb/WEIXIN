@@ -1,17 +1,32 @@
-.empty {
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+page{
+  background-color: #fff;
 }
 
-.empty image {
-  width: 400rpx;
-  height: 400rpx;
-  margin-bottom: 40rpx;
+van-cell {
+  margin-bottom: 20rpx;
 }
 
-.empty .text{
+.text_img{
   font-size: 28rpx;
-  line-height: 40rpx;
-  color: #666;
+  color: #646566;
+  width: 170rpx;
+  margin-right: 10rpx;
+}
+
+.upload_box{
+  padding: 20rpx 32rpx;
+}
+
+.submit_btn {
+  justify-content: center;
+  align-content: center;
+}
+
+.submit_btn button {
+  width: 240rpx;
+  height: 60rpx;
+  font-size: 24rpx;
+  line-height: 60rpx;
+  margin-top: 60rpx;
+  background-color: #5063c2 !important;
 }

@@ -1,14 +1,14 @@
 {
   "pages": [
-    "pages/start/index",
-    "pages/index/index",
-    "pages/borrow/index",
-    "pages/purchase/index",
     "pages/poster/index",
+    "pages/index/index",
+    "pages/start/index",
+    "pages/borrow/index",
+    "pages/my/index",
+    "pages/purchase/index",
     "pages/search/index",
     "pages/kefu/index",
-    "pages/detail/index",
-    "pages/my/index"
+    "pages/detail/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

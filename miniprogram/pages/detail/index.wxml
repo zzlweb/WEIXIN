@@ -42,6 +42,7 @@
   >
     <van-button
       plain
+      hairline
       class="bottom-button"
       data-src="/pages/index/index"
       bind:click="goPage"

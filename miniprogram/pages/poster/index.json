@@ -1,7 +1,14 @@
 {
-  "navigationBarTitleText": "我的发布",
+  "navigationBarTitleText": "我要捐赠",
   "navigationBarBackgroundColor": "#5063c2",
   "navigationBarTextStyle": "white",
   "usingComponents": {
+    "nav-bar": "/components/navbar",
+    "van-field": "vant-weapp/field/index",
+    "van-cell": "vant-weapp/cell/index",
+    "van-picker": "vant-weapp/picker/index",
+    "van-popup": "vant-weapp/popup/index",
+    "van-uploader": "vant-weapp/uploader/index",
+    "van-button": "vant-weapp/button/index"
   }
 }
