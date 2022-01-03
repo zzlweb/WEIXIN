@@ -1,15 +1,15 @@
-page{
+page {
   background-color: #fff;
 }
 
-.text_img{
+.text_img {
   font-size: 28rpx;
   color: #646566;
   width: 170rpx;
   margin-right: 10rpx;
 }
 
-.upload_box{
+.upload_box {
   padding: 20rpx 32rpx;
 }
 
@@ -23,6 +23,14 @@ page{
   height: 80rpx;
   font-size: 26rpx;
   line-height: 80rpx;
-  margin-top: 60rpx;
+  margin-top: 120rpx;
   background-color: #5063c2 !important;
+}
+
+.van-cell {
+  line-height: 70rpx;
+}
+
+.van-field__body {
+  line-height: 70rpx;
 }

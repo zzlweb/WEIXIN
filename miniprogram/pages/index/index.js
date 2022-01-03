@@ -259,7 +259,7 @@ Page({
 
           !result &&
             wx.showToast({
-              title: '收藏成功！',
+              title: '添加借阅成功！',
               icon: 'none',
               duration: 1000,
             });
@@ -267,7 +267,7 @@ Page({
           collection = [];
           collection.push(e.currentTarget.dataset.id);
           wx.showToast({
-            title: '收藏成功！',
+            title: '添加借阅成功！',
             icon: 'none',
             duration: 1000,
           });

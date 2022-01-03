@@ -1,8 +1,9 @@
 {
-  "usingComponents": { 
-    "van-swipe-cell": "vant-weapp/swipe-cell/index", 
-    "van-cell": "vant-weapp/cell/index", 
-    "van-empty": "vant-weapp/empty/index" ,
-    "van-button": "vant-weapp/button/index" 
+  "usingComponents": {
+    "van-swipe-cell": "vant-weapp/swipe-cell/index",
+    "van-cell": "vant-weapp/cell/index",
+    "van-empty": "vant-weapp/empty/index",
+    "van-button": "vant-weapp/button/index",
+    "van-submit-bar": "vant-weapp/submit-bar/index"
   }
 }
