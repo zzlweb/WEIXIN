@@ -7,10 +7,24 @@ Page({
       data: {
             userInfo: app.userinfo || null,
             // 序列
-            dataPersonal: [
-                  { id: '0', image: '/images/我的钱包.svg' , title:'我的钱包', src:''},
-                  { id: '1', image: '/images/我的客服.svg' , title:'客服反馈', src:'/pages/kefu/index'},
-                  { id: '3', image: '/images/关于.svg' , title:'关于应用', src:''}
+            dataPersonal: [{
+                        id: '0',
+                        image: '/images/我的钱包.svg',
+                        title: '我的钱包',
+                        src: ''
+                  },
+                  {
+                        id: '1',
+                        image: '/images/我的客服.svg',
+                        title: '客服反馈',
+                        src: '/pages/kefu/index'
+                  },
+                  {
+                        id: '3',
+                        image: '/images/关于.svg',
+                        title: '关于应用',
+                        src: ''
+                  }
             ]
       },
 
@@ -65,19 +79,31 @@ Page({
        * 跳转
        */
       goPage(e) {
-            if(!app.userinfo){
+            if (!app.userinfo) {
                   wx.showToast({
                         title: '请授权后方可使用',
                         icon: 'none',
                         duration: 2000,
                   })
-                  return 
+                  return
             };
+
+            if (e.currentTarget.dataset.src === '/pages/poster/index') {
+                  if (app.openid !== 'o7PeB4pQ19Z4UlOqYH1uAQR_qLwI') {
+                        wx.showToast({
+                              title: '请联系管理员',
+                              duration: 2000,
+                              icon: 'none'
+                        })
+
+                        return
+                  }
+            }
             e.currentTarget.dataset.src ? wx.navigateTo({
                   url: e.currentTarget.dataset.src
             }) : wx.showToast({
                   title: '暂未开放',
-                  icon: 'none', 
+                  icon: 'none',
                   duration: 2000,
             })
       },
@@ -85,8 +111,7 @@ Page({
       /**
        * 生命周期函数--监听页面加载
        */
-      onLoad() {
-      },
+      onLoad() {},
       /**
        * 生命周期函数--监听页面初次渲染完成
        */

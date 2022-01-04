@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/search/index",
-    "pages/my/index",
-    "pages/detail/index",
     "pages/start/index",
+    "pages/index/index",
     "pages/borrow/index",
+    "pages/my/index",
+    "pages/search/index",
+    "pages/detail/index",
     "pages/poster/index",
     "pages/purchase/index",
     "pages/kefu/index"
