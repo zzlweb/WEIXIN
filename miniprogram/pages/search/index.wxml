@@ -1,2 +1,66 @@
 <!--miniprogram/pages/search/index.wxml-->
-<text>搜索页面</text>
+<view class="search_content_box flex-row">
+  <van-field
+    model:value="{{ value }}"
+    placeholder="搜索想要的书籍，例如：设计"
+    border="{{ false }}"
+    class="fill-flex"
+  >
+    <image
+      slot="left-icon"
+      class="search_ico"
+      src="/images/search.png"
+    ></image>
+  </van-field>
+  <van-button
+    type="primary"
+    color="#5063c2"
+    bind:click="search"
+  >搜索
+  </van-button>
+</view>
+
+<!-- 图书宫格展示 -->
+<view class="list_grid flex-row">
+  <view
+    class="list_grid_box flex-col fill-flex"
+    wx:for="{{bookList}}"
+    wx:key="index"
+  >
+    <view class="list_box_img">
+      <view class="tags" wx:if="{{item.status}}">已借阅</view>
+      <image
+        lazy-load="{{true}}"
+        mode="aspectFit"
+        src="{{item.url}}"
+      ></image>
+    </view>
+    <view>
+      <view class="list_box_title text-cut">{{item.name}}</view>
+      <view class="list_box_author">捐赠人:{{item.author}}</view>
+    </view>
+    <view
+      bindtap="goDetail"
+      data-id="{{item}}"
+      class="list_box_bottom flex-row "
+      wx:if="{{!item.status}}"
+    >
+      <view class="list_box_money">我想借阅</view>
+      <image lazy-load="{{true}}" src="/images/add.svg"></image>
+    </view>
+
+    <view class="list_box_bottom flex-row" wx:else>
+      <view class="list_box_money ">借阅人:</view>
+      <view class="borrow_name">
+        {{item.borrower}}
+      </view>
+    </view>
+  </view>
+</view>
+
+<van-empty
+  image="error"
+  description="暂无数据"
+  wx:if="{{isEmpty}}"
+/>
+

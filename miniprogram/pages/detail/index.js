@@ -12,7 +12,7 @@ Page({
     // 是否显示空状态
     isEmpty: false,
     // 禁用按钮状态
-    disabled: true 
+    disabled: true
   },
 
   /**
@@ -38,7 +38,7 @@ Page({
         this.setData({
           isEmpty: true,
           borrow_List: [],
-          disabled:true
+          disabled: true
         });
       } else {
         this.setData({
@@ -60,35 +60,41 @@ Page({
    * @param {*}
    */
   async delCollection(e) {
-    wx.showLoading({
-      title: '归还中',
-    });
+    const position = e.detail;
 
-    try {
-      await wx.cloud
-        .callFunction({
-          name: 'cancelBook',
-          data: {
-            _id: `${e.currentTarget.dataset.id}`,
-          },
-        })
-      wx.hideLoading();
-      wx.showToast({
-        title: '归还成功',
-        icon: 'none',
-        duration: 2000,
-      });
-    } catch (error) {
-      wx.hideLoading();
-      wx.showToast({
-        title: '归还失败',
-        icon: 'none',
-        duration: 2000,
-      })
+    switch (position) {
+      case 'right':
+
+        wx.showLoading({
+          title: '归还中',
+        });
+
+        try {
+          await wx.cloud
+            .callFunction({
+              name: 'cancelBook',
+              data: {
+                _id: `${e.currentTarget.dataset.id}`,
+              },
+            })
+          wx.hideLoading();
+          wx.showToast({
+            title: '归还成功',
+            icon: 'none',
+            duration: 2000,
+          });
+        } catch (error) {
+          wx.hideLoading();
+          wx.showToast({
+            title: '归还失败',
+            icon: 'none',
+            duration: 2000,
+          })
+        }
+
+        await this.queryBorrowBook();
+        break;
     }
-
-    await this.queryBorrowBook();
-
   },
 
   /**
@@ -110,8 +116,8 @@ Page({
    * 归还全部书籍
    */
   async onClickButton(e) {
-    const IdArray = [] 
-    this.data.borrow_List.forEach( item => {
+    const IdArray = []
+    this.data.borrow_List.forEach(item => {
       IdArray.push(item._id)
     })
 
@@ -121,7 +127,7 @@ Page({
           .callFunction({
             name: 'cancelBook',
             data: {
-              _id: index,
+              _id: IdArray[index],
             },
           })
         wx.hideLoading();
@@ -134,7 +140,7 @@ Page({
         this.setData({
           isEmpty: true,
           borrow_List: [],
-          disabled:true
+          disabled: true
         })
 
       } catch (error) {
