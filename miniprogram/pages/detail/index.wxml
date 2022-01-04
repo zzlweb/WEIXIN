@@ -10,6 +10,8 @@
       right-width="{{ 65 }}"
       wx:for="{{borrow_List}}"
       wx:key="index"
+      bind:click="delCollection"
+      data-id="{{item._id}}"
     >
       <view class="book_item flex-row">
         <image
@@ -25,12 +27,7 @@
           <view class="book_item_author">作者:{{item.author}}</view>
         </view>
       </view>
-      <view
-        slot="right"
-        bindtap="delCollection"
-        data-id="{{item._id}}"
-        class="delBtn flex-row"
-      >归还书籍
+      <view slot="right" class="delBtn flex-row">归还书籍
       </view>
     </van-swipe-cell>
   </view>
@@ -41,8 +38,8 @@
     wx:if="{{isEmpty}}"
   >
     <van-button
-      plain
-      hairline
+      color="#5063c2"
+      type="primary"
       class="bottom-button"
       data-src="/pages/index/index"
       bind:click="goPage"
@@ -51,12 +48,11 @@
   </van-empty>
 
   <van-submit-bar
-  price="{{ 3050 }}"
-  button-text="提交订单"
-  bind:submit="onClickButton"
-  tip="{{ true }}"
->
-  <van-tag type="primary">标签</van-tag>
-</van-submit-bar>
+    button-text="全部归还"
+    disabled="{{disabled}}"
+    bind:submit="onClickButton"
+    tip="{{ true }}"
+  >
+  </van-submit-bar>
 </view>
 

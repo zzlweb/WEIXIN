@@ -45,6 +45,5 @@
   decimal-length="0"
   button-text="提交借阅"
   bind:submit="onSubmit"
-  suffix-label="本"
 />
 

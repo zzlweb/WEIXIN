@@ -1,7 +1,8 @@
 /* miniprogram/pages/detail/index.wxss */
 .detail_page{
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .book_item {
