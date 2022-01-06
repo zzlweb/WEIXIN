@@ -116,41 +116,34 @@ Page({
    * 归还全部书籍
    */
   async onClickButton(e) {
-    const IdArray = []
-    this.data.borrow_List.forEach(item => {
-      IdArray.push(item._id)
-    })
-
-    for (let index = 0; index < IdArray.length; index++) {
-      try {
-        await wx.cloud
-          .callFunction({
-            name: 'cancelBook',
-            data: {
-              _id: IdArray[index],
-            },
-          })
-        wx.hideLoading();
-        wx.showToast({
-          title: '归还成功',
-          icon: 'none',
-          duration: 2000,
-        });
-
-        this.setData({
-          isEmpty: true,
-          borrow_List: [],
-          disabled: true
+    try {
+      await wx.cloud
+        .callFunction({
+          name: 'cancelBook',
+          data: {
+            _id: [app.openid],
+          },
         })
+      wx.hideLoading();
+      wx.showToast({
+        title: '归还成功',
+        icon: 'none',
+        duration: 2000,
+      });
 
-      } catch (error) {
-        wx.hideLoading();
-        wx.showToast({
-          title: '归还失败',
-          icon: 'none',
-          duration: 2000,
-        })
-      }
+      this.setData({
+        isEmpty: true,
+        borrow_List: [],
+        disabled: true
+      })
+
+    } catch (error) {
+      wx.hideLoading();
+      wx.showToast({
+        title: '归还失败',
+        icon: 'none',
+        duration: 2000,
+      })
     }
   },
 
