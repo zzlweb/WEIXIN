@@ -171,12 +171,14 @@ view.top_list_icon > image {
 }
 
 .list_box.disable .tags {
-  color: rgb(247, 27, 27);
+  color: #fff;
+  background-color: #5063c2;
   position: absolute;
-  font-size: 20rpx;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  min-width: max-content;
+  padding: 4rpx 6rpx;
+  top: 0;
+  right: 0;
+  font-size: 24rpx;
 }
 
 .list_box .list_box_img {
@@ -253,12 +255,14 @@ view.top_list_icon > image {
 }
 
 .list_grid_box .list_box_img .tags {
-  color: rgb(247, 27, 27);
+  color: #fff;
+  background-color: #5063c2;
   position: absolute;
-  font-size: 20rpx;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  min-width: max-content;
+  padding: 4rpx 6rpx;
+  top: 0;
+  right: 0;
+  font-size: 24rpx;
 }
 
 .list_grid_box .list_box_img image {
