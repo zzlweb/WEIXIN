@@ -236,6 +236,7 @@ view.top_list_icon > image {
 
 .list_grid {
   background-color: #fff;
+  min-height: 60vh;
 }
 
 /* 宫格展示部分 */
@@ -287,8 +288,8 @@ view.top_list_icon > image {
 
 .nocontent {
   width: 100%;
-  height: 400rpx;
   display: flex;
+  height: 60vh;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -320,3 +321,4 @@ view.top_list_icon > image {
 .topTop {
   background-color: #fff;
 }
+

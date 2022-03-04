@@ -66,3 +66,7 @@ van-loading {
   transform: translate(-50%, -50%);
   color: #000;
 }
+
+.van-tabs__line{
+  background-color: #5063c2 !important;
+}

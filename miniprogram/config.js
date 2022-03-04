@@ -17,32 +17,36 @@ var data = {
   bgurl: '/images/startImg.jpg',
   college: [
     {
-      name: '平面',
+      name: '全部', 
       id: -1,
     },
     {
-      name: '交互',
+      name: '平面',
       id: 0,
     },
     {
-      name: '前端',
+      name: '交互',
       id: 1,
     },
     {
-      name: '创新',
+      name: '前端',
       id: 2,
     },
     {
-      name: '新闻',
+      name: '创新',
       id: 3,
     },
     {
-      name: '杂志',
+      name: '新闻',
       id: 4,
     },
     {
-      name: '其他',
+      name: '杂志',
       id: 5,
+    },
+    {
+      name: '其他',
+      id: 6,
     },
   ],
 };

@@ -20,9 +20,8 @@ Page({
     // 导航栏和状态栏高度
     navigationBarAndStatusBarHeight:
       wx.getStorageSync('statusBarHeight') +
-      wx.getStorageSync('navigationBarHeight') +
-      'px',
-    collegeCur: -2,
+      wx.getStorageSync('navigationBarHeight') ,
+    collegeCur: -1,
     list: [1],
     bookList: [],
     // 加载状态
@@ -65,7 +64,7 @@ Page({
       showEmpty: false,
       bookList: [],
     });
-    if (!QueryName) {
+    if (!QueryName || QueryName === '全部') {
       wx.cloud.callFunction({
         name: 'QueryBook',
         complete: (res) => {
@@ -186,8 +185,7 @@ Page({
     const that = this;
     this.setData(
       {
-        collegeCur: e.currentTarget.dataset.id - 1,
-        scrollLeft: (e.currentTarget.dataset.id - 3) * 100,
+        collegeCur: e.detail.index - 1 ,
         showList: false,
       },
       function () {
@@ -204,8 +202,7 @@ Page({
    */
   selectAll() {
     this.setData({
-      collegeCur: -2,
-      scrollLeft: -200,
+      collegeCur: -1,
       showList: false,
     });
     this.getAllBooks();
